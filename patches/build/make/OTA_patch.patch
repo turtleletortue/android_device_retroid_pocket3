@@ -1,37 +1,37 @@
 diff --git a/tools/releasetools/ota_from_target_files.py b/tools/releasetools/ota_from_target_files.py
-index be0e798685..3d8df3f6b4 100755
+index 0cff60f1a1..6fd124734d 100755
 --- a/tools/releasetools/ota_from_target_files.py
 +++ b/tools/releasetools/ota_from_target_files.py
-@@ -703,7 +703,7 @@ def AddCompatibilityArchiveIfTrebleEnabled(target_zip, output_zip, target_info,
+@@ -845,7 +845,7 @@ def AddCompatibilityArchiveIfTrebleEnabled(target_zip, output_zip, target_info,
  
-   # Full OTA carries the info for system/vendor both.
+   # Full OTA carries the info for system/vendor/product/odm
    if source_info is None:
 -    AddCompatibilityArchive(True, True)
 +    #AddCompatibilityArchive(True, True)
      return
  
-   assert not source_info.oem_props
-@@ -718,7 +718,7 @@ def AddCompatibilityArchiveIfTrebleEnabled(target_zip, output_zip, target_info,
-       "ro.vendor.build.fingerprint")
-   vendor_updated = source_fp_vendor != target_fp_vendor
+   source_fp = source_info.fingerprint
+@@ -863,7 +863,7 @@ def AddCompatibilityArchiveIfTrebleEnabled(target_zip, output_zip, target_info,
+                 FingerprintChanged(source_info.odm_fingerprint,
+                                    target_info.odm_fingerprint)
  
--  AddCompatibilityArchive(system_updated, vendor_updated)
-+  #AddCompatibilityArchive(system_updated, vendor_updated)
+-  AddCompatibilityArchive(system_updated or product_updated,
++  #AddCompatibilityArchive(system_updated or product_updated,
+                           vendor_updated or odm_updated)
  
  
- def CopyInstallTools(output_zip):
-@@ -869,7 +869,7 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
-     vendor_diff = common.BlockDifference("vendor", vendor_tgt)
-     vendor_diff.WriteScript(script, output_zip)
+@@ -1096,7 +1096,7 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
+                              progress=progress_dict.get(block_diff.partition),
+                              write_verify_script=OPTIONS.verify)
  
 -  AddCompatibilityArchiveIfTrebleEnabled(input_zip, output_zip, target_info)
 +  #AddCompatibilityArchiveIfTrebleEnabled(input_zip, output_zip, target_info)
  
-   common.CheckSize(boot_img.data, "boot.img", target_info)
-   common.ZipWriteStr(output_zip, "boot.img", boot_img.data)
-@@ -1460,8 +1460,8 @@ def WriteBlockIncrementalOTAPackage(target_zip, source_zip, output_file):
-   else:
-     vendor_diff = None
+   boot_img = common.GetBootableImage(
+       "boot.img", "boot.img", OPTIONS.input_tmp, "BOOT")
+@@ -1677,8 +1677,8 @@ def WriteBlockIncrementalOTAPackage(target_zip, source_zip, output_file):
+                                         source_info=source_info,
+                                         device_specific=device_specific)
  
 -  AddCompatibilityArchiveIfTrebleEnabled(
 -      target_zip, output_zip, target_info, source_info)
@@ -40,9 +40,9 @@ index be0e798685..3d8df3f6b4 100755
  
    # Assertions (e.g. device properties check).
    target_info.WriteDeviceAssertions(script, OPTIONS.oem_no_mount)
-@@ -1798,8 +1798,8 @@ def WriteABOTAPackageWithBrilloScript(target_file, output_file,
+@@ -2172,8 +2172,8 @@ def WriteABOTAPackageWithBrilloScript(target_file, output_file,
      else:
-       print("Warning: cannot find care map file in target_file package")
+       logger.warning("Cannot find care map file in target_file package")
  
 -  AddCompatibilityArchiveIfTrebleEnabled(
 -      target_zip, output_zip, target_info, source_info)
