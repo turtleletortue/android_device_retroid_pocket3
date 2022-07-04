@@ -144,9 +144,6 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.
 # Recovery Graphics
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 
-# AAPT CONFIG
-PRODUCT_AAPT_PREF_CONFIG := mdpi
-
 # Sepolicy
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 SELINUX_IGNORE_NEVERALLOWS := true
