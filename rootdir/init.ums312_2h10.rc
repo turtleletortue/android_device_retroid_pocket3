@@ -38,7 +38,7 @@ on property:dev.bootcomplete=1
 
 service pservice /system/bin/pservice
     class core
-	disbaled
+	disabled
     user root
     group root
 	seclabel u:r:pservice:s0
