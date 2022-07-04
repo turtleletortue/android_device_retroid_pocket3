@@ -147,3 +147,7 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 # Sepolicy
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 SELINUX_IGNORE_NEVERALLOWS := true
+
+# Ignore overriding commands errors
+BUILD_BROKEN_DUP_RULES := true
+
