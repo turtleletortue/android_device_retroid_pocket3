@@ -547,7 +547,7 @@ on early-boot
     chown system root /sys/kernel/debug/sipc/smem
     chown system root /sys/kernel/debug/sipc/smsg
 
-     mknod /dev/input c 5 0
+     #mknod /dev/input c 5 0
      chmod 755 /dev/input
 
 
