@@ -49,7 +49,7 @@ on init
     write /dev/stune/top-app/schedtune.init_task_load_pct 45
 
 on fs
-    ubiattach 0 ubipac
+    #ubiattach 0 ubipac
     # exec /sbin/resize2fs -ef /fstab.${ro.hardware}
     mount_all /vendor/etc/fstab.${ro.hardware}
 
@@ -399,8 +399,8 @@ on property:persist.vendor.eng.reset=1
 on property:persist.vendor.eng.sprdwl=1
     insmod /lib/modules/sprdwl_ng.ko
 
-on property:persist.vendor.eng.sprdwl=0
-    rmmod /lib/modules/sprdwl_ng.ko
+#on property:persist.vendor.eng.sprdwl=0
+    #rmmod /lib/modules/sprdwl_ng.ko
 
 
 
@@ -411,7 +411,7 @@ on early-boot
     chmod 440 /proc/pmic/mem
     chmod 660 /proc/pmic/status
     chmod 660 /proc/pmic/wdtirq
-    chmod 666 root /proc/pmic/cali_lib
+    chmod 666 /proc/pmic/cali_lib
     chmod 660 /proc/pmic/ldinfo
 
     chown system root /proc/pmic/stop
