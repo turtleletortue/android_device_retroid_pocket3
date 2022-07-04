@@ -131,7 +131,7 @@ DEVICE_MATRIX_FILE := $(DEVICE_PATH)/configs/compatibility_matrix.xml
 TARGET_SYSTEM_PROP += device/retroid/pocket2plus/system.prop
 
 # Vendor prop
-TARGET_VENDOR_PROP += device/retroid/pocket2plus/vendor.prop
+#TARGET_VENDOR_PROP += device/retroid/pocket2plus/vendor.prop
 
 USE_XML_AUDIO_POLICY_CONF := 1
 
