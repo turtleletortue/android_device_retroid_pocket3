@@ -89,8 +89,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.managed_users.xml:system/etc/permissions/android.software.managed_users.xml \
     frameworks/native/data/etc/android.software.webview.xml:system/etc/permissions/android.software.webview.xml \
-    frameworks/base/media/lib/remotedisplay/com.android.media.remotedisplay.xml:system/etc/permissions/com.android.media.remotedisplay.xml \
-    frameworks/base/media/lib/signer/com.android.mediadrm.signer.xml:system/etc/permissions/com.android.mediadrm.signer.xml 
 
 # Permissions (vendor)
 PRODUCT_COPY_FILES += \
