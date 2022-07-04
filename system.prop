@@ -1,0 +1,81 @@
+rs.firmware.version=20220504
+rs.firmware.compatibility=RP3_Android9
+rs.firmware.name=1.0.0
+rs.hardware.version=GB835_MB_VD
+ro.rp2plus.ota.version=1.9.0.0
+# end build properties
+#
+# from device/sprd/sharkl5/ums312_2h10/system.prop
+#
+# Default density config
+#ro.sf.lcd_density=176
+#ro.sf.lcd_width=54
+#ro.sf.lcd_height=96
+ro.product.hardware=ums312_2h10
+ro.vendor.audio.product.hardware=ums312_2h10
+# Set Opengl ES Version
+#ro.opengles.version=196609
+
+# ro.fm.chip.port.UART.androidm=true
+
+# FRP property for pst device
+ro.frp.pst=/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/persist
+
+#enable audio nr tuning
+ro.vendor.audio_tunning.nr=1
+
+#audio boot completed check
+persist.vendor.audio.boot_completed=0
+
+#Enable sdcardfs feature
+ro.sys.sdcardfs=true
+persist.sys.sdcardfs=force_on
+
+#config for camera
+persist.sys.cam.ba.blur.version=6
+persist.sys.cam.api.version=0
+persist.sys.cam.fast.blur=true
+persist.sys.blending.enable=true
+persist.sys.sprd.refocus.bokeh=true
+
+#config dreamcamera2
+persist.sys.cam.normalhdr=false
+persist.sys.cam.wide.frame.gap=2
+persist.sys.cam.battery.flash = 10
+persist.sys.cam.sfv.alter=true
+persist.sys.cam.filter.version=2
+persist.sys.cam.beauty.fullfuc=false
+persist.sys.cam.3dnr=true
+persist.sys.cam.fr.blur.version=1
+persist.sys.cam.video.external=true
+
+#eis function
+persist.sys.cam.eois.dc.back=false
+persist.sys.cam.eois.dc.front=false
+persist.sys.cam.eois.dv.back=true
+persist.sys.cam.eois.dv.front=false
+ro.media.recoderEIS.enabled=true
+
+#enable 3d calibration
+persist.sys.3d.calibraion=1
+persist.sys.cam3.type=back_bokeh
+persist.sys.cam3.multi.cam.id=2
+
+#add for sensor choose init settting
+persist.vendor.cam.init.setting=1
+
+#add for rotation animation scale
+sys.rotation.animscale=0.5
+
+#parameters for lmkd
+ro.lmk.use_minfree_levels=true
+ro.lmk.kill_heaviest_task=true
+
+#audio offload wacklock
+ro.audio.offload_wakelock=0
+
+qemu.hw.mainkeys=0
+
+persist.sys.ss.enable=false
+
+keyguard.no_require_sim=true

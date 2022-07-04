@@ -1,0 +1,41 @@
+/dev/block/mmcblk0boot0                                                        /spl                emmc    defaults    defaults
+/dev/block/mmcblk0boot1                                                        /spl_bk             emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/uboot                 /uboot              emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/uboot_bak             /uboot_bak          emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/sml                   /sml                emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/sml_bak               /sml_bak            emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/trustos               /tos                emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/trustos_bak           /tos_bak            emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/vbmeta                /vbmeta             emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/vbmeta_bak            /vbmeta_bak         emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/dtb                   /dtb                emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/dtbo                  /dtbo               emmc    defaults    defaults
+
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/l_ldsp                /ltedsp             emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/l_gdsp                /ltegdsp            emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/l_cdsp                /ltecdsp            emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/l_agdsp               /lteagdsp           emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/l_modem               /ltemodem           emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/l_deltanv             /ltedeltanv         emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/l_fixnv1              /ltefixnv1          emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/l_fixnv2              /ltefixnv2          emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/l_runtimenv1          /lteruntimenv1      emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/l_runtimenv2          /lteruntimenv2      emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/wcnmodem              /wcnmodem           emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/gnssmodem             /gnssmodem          emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/pm_sys                /pmsys              emmc    defaults    defaults
+
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/misc                  /misc               emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/boot                  /boot               emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/recovery              /recovery           emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/persist               /persist            emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/logo                  /logo               emmc    defaults    defaults
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/fbootlogo             /fbootlogo          emmc    defaults    defaults
+
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/system                /             ext4    ro,barrier=1    wait
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/vendor                /vendor             ext4    ro,barrier=1    wait
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/userdata              /data               f2fs    noatime,nosuid,nodev,discard,inline_xattr,inline_data    wait,encryptable=footer,check
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/cache                 /cache              ext4    noatime,nosuid,nodev,nomblk_io_submit,noauto_da_alloc    wait,check
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/prodnv                /mnt/vendor         ext4    noatime,nosuid,nodev,nomblk_io_submit,noauto_da_alloc     wait,check
+
+/dev/block/platform/soc/soc:ap-apb/71100000.sdio/mmcblk1p1                     /storage/sdcard0    vfat    defaults    defaults

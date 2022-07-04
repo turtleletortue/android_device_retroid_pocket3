@@ -1,0 +1,22 @@
+# Pservice (Probably necessary for device controller to work)
+bin/pservice
+
+# Keylayouts (Necessary for device controller to work)
+usr/keylayout/Vendor_2020_Product_0111.kl
+
+# system/etc
+etc/audio_policy_criteria.conf
+etc/sprd_performance_config.xml
+
+# a2dp hal
+lib/hw/audio.a2dp.ums312.so
+lib64/hw/audio.a2dp.ums312.so
+
+# Libraries needed by a2dp hal
+lib/libsysoffloadstream.so
+lib64/libsysoffloadstream.so
+lib/libsystinyxml.so
+lib64/libsystinyxml.so
+lib/libsystinycompress.so
+lib64/libsystinycompress.so
+

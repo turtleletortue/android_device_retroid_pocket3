@@ -1,0 +1,44 @@
+import /vendor/etc/init/hw/init.common.rc
+
+on init
+   start watchdogd
+
+on post-fs-data
+    setprop fpga.target.enable 1
+    setprop debug.delaytime.min 10
+    setprop debug.delaytime.mid 100
+    setprop debug.delaytime.max 1000
+    setprop debug.android_watchdog.disable 1
+
+#modify permission for voicetrigger dev
+    chown system  audio /dev/rt5512
+    chmod 660     /dev/rt5512
+	chmod 666     /dev/rstouch
+
+#modify for tof calibration
+    chmod 666 /mnt/vendor/vl53l0_offset_calibration.file
+    chmod 666 /mnt/vendor/vl53l0_xtak_calibration.file
+
+#modify for sprd_pub_monitor
+    chown  shell system  /sys/kernel/debug/sprd_pub_monitor/enable
+on boot
+
+# block I/O vm.dirty parameters
+    write /proc/sys/vm/dirty_background_bytes 4194304
+    write /proc/sys/vm/dirty_bytes  52428800
+
+# Set watchdog timer to 30 seconds and pet it every 10 seconds to get a 20 second margin
+service watchdogd /sbin/watchdogd 10 30
+	class core
+	oneshot
+	seclabel u:r:watchdogd:s0
+
+on property:dev.bootcomplete=1
+	start pservice
+
+service pservice /system/bin/pservice
+    class core
+	disbaled
+    user root
+    group root
+	seclabel u:r:pservice:s0

@@ -1,0 +1,132 @@
+#    All memory configuration as following, which include ZRAM, LMK, RTCC,
+# KSM, and some memory properties. The configurations parameters could
+# auto-adaptive according to memory size.
+#    The Value of property ro.vendor.ramconfig should be {ro.vendor.ramsize} / 256, but if diff
+# ro.vendor.ramsize use the same memory configuration parameters, the Value ro.vendor.ramconfig
+# should be the same. such as 1024M, 1536M use the same configurations parameters.
+#
+#    NOTE : IF Add new ro.vendor.ramconfig, PLEASE copy the configurations
+# between BEGIN line and  END line, Then change the parameters that you want.
+
+
+# Table ro.vendor.ramsize mapping to ro.vendor.ramconfig
+on property:ro.vendor.ramsize=512M
+    setprop ro.vendor.ramconfig 2
+on property:ro.vendor.ramsize=768M
+    setprop ro.vendor.ramconfig 2
+on property:ro.vendor.ramsize=1024M
+    setprop ro.vendor.ramconfig 4
+
+on property:ro.vendor.ramsize=2048M
+    setprop ro.vendor.ramconfig 4
+on property:ro.vendor.ramsize=3072M
+    setprop ro.vendor.ramconfig 8
+on property:ro.vendor.ramsize=4096M
+    setprop ro.vendor.ramconfig 8
+
+######## ramconfig=2,3 memory parameter configurations BEGIN #######
+on property:ro.vendor.ramconfig=2
+#    setprop ro.config.low_ram true
+
+     write /proc/sys/vm/extra_free_kbytes 4500
+
+#Set LMK watermark as {27.6M,48M,76M,86M,96M,110MB}
+    setprop sys.lmk.adj "0,100,200,800,900,906"
+    setprop sys.lmk.minfree "7066,12288,19354,22118,24576,28262"
+    setprop sys.lmk.autocalc false
+
+#Set vmpressure
+    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
+
+#Set vmpressure based process reclaim
+#    write /sys/module/process_reclaim/parameters/pressure_min 50
+#    write /sys/module/process_reclaim/parameters/pressure_max 90
+#    write /sys/module/process_reclaim/parameters/min_score_adj 360
+#    write /sys/module/process_reclaim/parameters/per_swap_size 1024
+#    write /sys/module/process_reclaim/parameters/swap_opt_eff 50
+#    write /sys/module/process_reclaim/parameters/swap_eff_win 2
+#    write /sys/module/process_reclaim/parameters/swap_low_ratio 65
+#    write /sys/module/process_reclaim/parameters/swap_high_ratio 85
+    write /sys/module/process_reclaim/parameters/enable_process_reclaim 1
+
+#enable boost_kill and boost_sigkill_free
+    write /proc/sys/kernel/boost_killing 1
+    write /proc/sys/kernel/boost_sigkill_free 1
+    write /proc/sys/vm/direct_swappiness 100
+
+######## ramconfig=2,3 memory parameter configurations END #########
+
+
+######## ramconfig=4 memory parameter configurations BEGIN #######
+on property:ro.vendor.ramconfig=4
+    setprop ro.config.low_ram false
+
+     write /proc/sys/vm/extra_free_kbytes 10800
+
+#    setprop sys.lmk.minfree "6144,9216,16588,20480,46080,56320"
+#Set LMK watermark as {24M,36M,64M,80M,180MB,220M}
+    setprop sys.lmk.adj "0,100,200,600,900,906"
+    setprop sys.lmk.minfree "5888,10240,16128,18432,20480,23552"
+    setprop sys.lmk.autocalc false
+
+#Set vmpressure
+    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
+
+#Set vmpressure based process reclaim
+#    write /sys/module/process_reclaim/parameters/pressure_min 50
+#    write /sys/module/process_reclaim/parameters/pressure_max 90
+#    write /sys/module/process_reclaim/parameters/min_score_adj 360
+#    write /sys/module/process_reclaim/parameters/per_swap_size 1024
+#    write /sys/module/process_reclaim/parameters/swap_opt_eff 50
+#    write /sys/module/process_reclaim/parameters/swap_eff_win 2
+#    write /sys/module/process_reclaim/parameters/swap_low_ratio 65
+#    write /sys/module/process_reclaim/parameters/swap_high_ratio 85
+    write /sys/module/process_reclaim/parameters/enable_process_reclaim 1
+
+#enable boost_kill and boost_sigkill_free
+    write /proc/sys/kernel/boost_killing 1
+    write /proc/sys/kernel/boost_sigkill_free 1
+    write /proc/sys/vm/direct_swappiness 100
+
+######## ramconfig=4 memory parameter configurations END #########
+
+
+######## ramconfig=8,12,16 memory parameter configurations BEGIN #######
+on property:ro.vendor.ramconfig=8
+#    setprop ro.config.low_ram false
+
+
+#Set LMKD parameters
+#lmkd process start earlier than native_init, so the parameters
+#for lmkd is placed in file system.prop.
+
+#Set vmpressure based process reclaim
+#    write /sys/module/process_reclaim/parameters/pressure_min 50
+#    write /sys/module/process_reclaim/parameters/pressure_max 90
+#    write /sys/module/process_reclaim/parameters/min_score_adj 360
+#    write /sys/module/process_reclaim/parameters/per_swap_size 1024
+#    write /sys/module/process_reclaim/parameters/swap_opt_eff 50
+#    write /sys/module/process_reclaim/parameters/swap_eff_win 2
+#    write /sys/module/process_reclaim/parameters/swap_low_ratio 65
+#    write /sys/module/process_reclaim/parameters/swap_high_ratio 85
+    write /sys/module/process_reclaim/parameters/enable_process_reclaim 1
+
+#enable boost_kill and boost_sigkill_free
+    write /proc/sys/kernel/boost_killing 1
+    write /proc/sys/kernel/boost_sigkill_free 1
+    write /proc/sys/vm/direct_swappiness 100
+
+#enable enhance meminfo
+    write /sys/module/emem/parameters/enable 1
+#   write /sys/module/emem/parameters/killed_proc_adj_threshold 200
+
+######## ramconfig=8,12,16 memory parameter configurations END #########
+
+#enable ZRAM on boot_complete
+on property:sys.boot_completed=1
+    write /dev/memcg/memory.swappiness 150
+    write /proc/sys/vm/page-cluster  0
+
+    write /sys/block/zram0/max_comp_streams 3
+    write /sys/block/zram0/comp_algorithm   lz4
+    swapon_all /vendor/etc/fstab.enableswap

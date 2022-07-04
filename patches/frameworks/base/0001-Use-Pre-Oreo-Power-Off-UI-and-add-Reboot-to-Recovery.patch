@@ -1,0 +1,323 @@
+Subject: [PATCH] Use Pre-Oreo Power Off UI and add Reboot to Recovery to Main
+ Options * The Power Off UI (Global Actions menu) in Oreo is not very
+ controller friendly. As a result, we revert back to the older UI (based on
+ this commit
+ https://github.com/LineageOS/android_frameworks_base/commit/16fbd9dd1d2d407aa0bc096800af2630c218cde8
+ ). Also, add the Reboot to Recovery option to the main power off menu to make
+ it easier to access.
+
+Change-Id: I6a9da2b5006342c557a02a90544f48d86c49abce
+---
+ .../globalactions/GlobalActionsDialog.java    | 133 ++++++++++++++----
+ 1 file changed, 102 insertions(+), 31 deletions(-)
+
+diff --git a/packages/SystemUI/src/com/android/systemui/globalactions/GlobalActionsDialog.java b/packages/SystemUI/src/com/android/systemui/globalactions/GlobalActionsDialog.java
+index 2b255f0b91f..861da35891f 100644
+--- a/packages/SystemUI/src/com/android/systemui/globalactions/GlobalActionsDialog.java
++++ b/packages/SystemUI/src/com/android/systemui/globalactions/GlobalActionsDialog.java
+@@ -116,6 +116,15 @@ import java.util.ArrayList;
+ import java.util.BitSet;
+ import java.util.List;
+ 
++// Legacy power menu
++import com.android.internal.app.AlertController;
++import com.android.internal.app.AlertController.AlertParams;
++import android.os.Bundle;
++import android.util.TypedValue;
++import android.view.KeyEvent;
++import android.widget.ListView;
++import android.widget.AdapterView;
++
+ /**
+  * Helper to show the global actions dialog.  Each item is an {@link Action} that
+  * may show depending on whether the keyguard is showing, and whether the device
+@@ -427,6 +436,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
+         if (!mIsRestartMenu) {
+             mItems.add(new PowerAction());
+             mItems.add(new RestartAction());
++            mItems.add(new RestartRecoveryAction());
+         }
+ 
+         ArraySet<String> addedKeys = new ArraySet<String>();
+@@ -512,7 +522,14 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
+ 
+         mAdapter = new MyAdapter();
+ 
+-        OnItemLongClickListener onItemLongClickListener = (parent, view, position, id) -> {
++        AlertParams params = new AlertParams(mContext);
++        params.mAdapter = mAdapter;
++        params.mOnClickListener = this;
++        params.mForceInverseBackground = true;
++
++        ActionsDialog dialog = new ActionsDialog(mContext, params);
++
++        /* OnItemLongClickListener onItemLongClickListener = (parent, view, position, id) -> {
+             final Action action = mAdapter.getItem(position);
+             if (action instanceof LongPressAction) {
+                 mDialog.dismiss();
+@@ -521,9 +538,25 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
+             return false;
+         };
+         ActionsDialog dialog = new ActionsDialog(mContext, this, mAdapter, onItemLongClickListener,
+-                mSeparatedEmergencyButtonEnabled);
++                mSeparatedEmergencyButtonEnabled); */
+         dialog.setCanceledOnTouchOutside(false); // Handled by the custom class.
+-        dialog.setKeyguardShowing(mKeyguardShowing);
++        //dialog.setKeyguardShowing(mKeyguardShowing);
++
++        dialog.getListView().setItemsCanFocus(true);
++        dialog.getListView().setLongClickable(true);
++        dialog.getListView().setOnItemLongClickListener(
++                new AdapterView.OnItemLongClickListener() {
++                    @Override
++                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position,
++                            long id) {
++                        final Action action = mAdapter.getItem(position);
++                        if (action instanceof LongPressAction) {
++                            return ((LongPressAction) action).onLongPress();
++                        }
++                        return false;
++                    }
++        });
++        dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
+ 
+         dialog.setOnDismissListener(this);
+         dialog.setOnShowListener(this);
+@@ -1167,12 +1200,13 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
+ 
+         public View getView(int position, View convertView, ViewGroup parent) {
+             Action action = getItem(position);
+-            View view = action.create(mContext, convertView, parent, LayoutInflater.from(mContext));
++            //View view = action.create(mContext, convertView, parent, LayoutInflater.from(mContext));
+             // Only the two top items get white background.
+-            if (position == 2 && !mIsRestartMenu) {
+-                HardwareUiLayout.get(parent).setDivisionView(view);
+-            }
+-            return view;
++            //if (position == 2 && !mIsRestartMenu) {
++            //    HardwareUiLayout.get(parent).setDivisionView(view);
++            //}
++            //return view;
++            return action.create(mContext, convertView, parent, LayoutInflater.from(mContext));
+         }
+     }
+ 
+@@ -1267,7 +1301,8 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
+ 
+         public View create(
+                 Context context, View convertView, ViewGroup parent, LayoutInflater inflater) {
+-            View v = inflater.inflate(com.android.systemui.R.layout.global_actions_item, parent,
++            //View v = inflater.inflate(com.android.systemui.R.layout.global_actions_item, parent,
++            View v = inflater.inflate(R.layout.global_actions_item, parent,
+                     false);
+ 
+             ImageView icon = (ImageView) v.findViewById(R.id.icon);
+@@ -1667,7 +1702,8 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
+ 
+         private final Context mContext;
+         private final MyAdapter mAdapter;
+-        private final LinearLayout mListView;
++        private final AlertController mAlert;
++        /*private final LinearLayout mListView;
+         private final FrameLayout mSeparatedView;
+         private final HardwareUiLayout mHardwareLayout;
+         private final OnClickListener mClickListener;
+@@ -1675,24 +1711,26 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
+         private final GradientDrawable mGradientDrawable;
+         private final ColorExtractor mColorExtractor;
+         private boolean mKeyguardShowing;
+-        private boolean mShouldDisplaySeparatedButton;
++        private boolean mShouldDisplaySeparatedButton;*/
+ 
+-        public ActionsDialog(Context context, OnClickListener clickListener, MyAdapter adapter,
++        /* public ActionsDialog(Context context, OnClickListener clickListener, MyAdapter adapter,
+                 OnItemLongClickListener longClickListener, boolean shouldDisplaySeparatedButton) {
+-            super(context, com.android.systemui.R.style.Theme_SystemUI_Dialog_GlobalActions);
++            super(context, com.android.systemui.R.style.Theme_SystemUI_Dialog_GlobalActions); */
++            public ActionsDialog(Context context, AlertParams params) {
++            super(context, getDialogTheme(context));
+             mContext = context;
+-            mAdapter = adapter;
++            /* mAdapter = adapter;
+             mClickListener = clickListener;
+             mLongClickListener = longClickListener;
+             mGradientDrawable = new GradientDrawable(mContext);
+             mColorExtractor = Dependency.get(SysuiColorExtractor.class);
+-            mShouldDisplaySeparatedButton = shouldDisplaySeparatedButton;
++            mShouldDisplaySeparatedButton = shouldDisplaySeparatedButton; */
+ 
+             // Window initialization
+-            Window window = getWindow();
+-            window.requestFeature(Window.FEATURE_NO_TITLE);
++            /* Window window = getWindow();
++            window.requestFeature(Window.FEATURE_NO_TITLE); */
+             // Inflate the decor view, so the attributes below are not overwritten by the theme.
+-            window.getDecorView();
++            /* window.getDecorView();
+             window.getAttributes().systemUiVisibility |= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                     | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
+@@ -1725,11 +1763,21 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
+                     // Populate the title here, just as Activity does
+                     event.getText().add(mContext.getString(R.string.global_actions));
+                     return true;
+-                }
+-            });
++                } 
++            }); */
++            mAlert = AlertController.create(mContext, this, getWindow());
++            mAdapter = (MyAdapter) params.mAdapter;
++            params.apply(mAlert);
++        }
++
++        private static int getDialogTheme(Context context) {
++            TypedValue outValue = new TypedValue();
++            context.getTheme().resolveAttribute(R.attr.alertDialogTheme,
++                    outValue, true);
++            return outValue.resourceId; 
+         }
+ 
+-        private void updateList() {
++        /*private void updateList() {
+             mListView.removeAllViews();
+             mSeparatedView.removeAllViews();
+             for (int i = 0; i < mAdapter.getCount(); i++) {
+@@ -1742,21 +1790,26 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
+                         mLongClickListener.onItemLongClick(null, v, pos, 0));
+                 parentView.addView(v);
+             }
+-        }
++        } */
+ 
+         @Override
+         protected void onStart() {
+             super.setCanceledOnTouchOutside(true);
+             super.onStart();
+-            updateList();
++            //updateList();
+ 
+-            Point displaySize = new Point();
++            /* Point displaySize = new Point();
+             mContext.getDisplay().getRealSize(displaySize);
+             mColorExtractor.addOnColorsChangedListener(this);
+             mGradientDrawable.setScreenSize(displaySize.x, displaySize.y);
+             GradientColors colors = mColorExtractor.getColors(mKeyguardShowing ?
+                     WallpaperManager.FLAG_LOCK : WallpaperManager.FLAG_SYSTEM);
+-            updateColors(colors, false /* animate */);
++            updateColors(colors, false ); */ 
++        }
++
++        public ListView getListView() {
++            return mAlert.getListView();
++
+         }
+ 
+         /**
+@@ -1764,7 +1817,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
+          * @param colors Colors and hints to use.
+          * @param animate Interpolates gradient if true, just sets otherwise.
+          */
+-        private void updateColors(GradientColors colors, boolean animate) {
++        /* private void updateColors(GradientColors colors, boolean animate) {
+             mGradientDrawable.setColors(getDarkGradientColor(colors), animate);
+             View decorView = getWindow().getDecorView();
+             if (colors.supportsDarkText()) {
+@@ -1781,18 +1834,18 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
+             colors.setSecondaryColor(SCRIM_DEFAULT_COLOR);
+             colors.setSupportsDarkText(fromWallpaper.supportsDarkText());
+             return colors;
+-        }
++        } */
+ 
+         @Override
+         protected void onStop() {
+             super.onStop();
+-            mColorExtractor.removeOnColorsChangedListener(this);
++            //mColorExtractor.removeOnColorsChangedListener(this);
+         }
+ 
+         @Override
+         public void show() {
+             super.show();
+-            mGradientDrawable.setAlpha(0);
++            /* mGradientDrawable.setAlpha(0);
+             mHardwareLayout.setTranslationX(getAnimTranslation());
+             mHardwareLayout.setAlpha(0);
+             mHardwareLayout.animate()
+@@ -1806,10 +1859,16 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
+                         mGradientDrawable.setAlpha(alpha);
+                     })
+                     .withEndAction(() -> getWindow().getDecorView().requestAccessibilityFocus())
+-                    .start();
++                    .start(); */
+         }
+ 
+-        @Override
++         @Override
++        protected void onCreate(Bundle savedInstanceState) {
++            super.onCreate(savedInstanceState);
++            mAlert.installContent(); 
++        }
++
++        /* @Override
+         public void dismiss() {
+             mHardwareLayout.setTranslationX(0);
+             mHardwareLayout.setAlpha(1);
+@@ -1825,7 +1884,7 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
+                         mGradientDrawable.setAlpha(alpha);
+                     })
+                     .start();
+-        }
++        } */
+ 
+         void dismissImmediately() {
+             super.dismiss();
+@@ -1836,23 +1895,39 @@ class GlobalActionsDialog implements DialogInterface.OnDismissListener,
+                     com.android.systemui.R.dimen.global_actions_panel_width) / 2;
+         }
+ 
++        @Override
++        public boolean onKeyDown(int keyCode, KeyEvent event) {
++            if (mAlert.onKeyDown(keyCode, event)) {
++                return true;
++            }
++            return super.onKeyDown(keyCode, event);
++        }
++
++        @Override
++        public boolean onKeyUp(int keyCode, KeyEvent event) {
++            if (mAlert.onKeyUp(keyCode, event)) {
++                return true;
++            }
++            return super.onKeyUp(keyCode, event);
++        }
++
+         @Override
+         public void onColorsChanged(ColorExtractor extractor, int which) {
+-            if (mKeyguardShowing) {
++            /* if (mKeyguardShowing) {
+                 if ((WallpaperManager.FLAG_LOCK & which) != 0) {
+                     updateColors(extractor.getColors(WallpaperManager.FLAG_LOCK),
+-                            true /* animate */);
++                            true );
+                 }
+             } else {
+                 if ((WallpaperManager.FLAG_SYSTEM & which) != 0) {
+                     updateColors(extractor.getColors(WallpaperManager.FLAG_SYSTEM),
+-                            true /* animate */);
++                            true );
+                 }
+-            }
++            } */
+         }
+ 
+-        public void setKeyguardShowing(boolean keyguardShowing) {
++        /* public void setKeyguardShowing(boolean keyguardShowing) {
+             mKeyguardShowing = keyguardShowing;
+-        }
++        } */
+     }
+ }
+-- 
+2.25.1
+

@@ -1,0 +1,53 @@
+diff --git a/tools/releasetools/ota_from_target_files.py b/tools/releasetools/ota_from_target_files.py
+index be0e798685..3d8df3f6b4 100755
+--- a/tools/releasetools/ota_from_target_files.py
++++ b/tools/releasetools/ota_from_target_files.py
+@@ -703,7 +703,7 @@ def AddCompatibilityArchiveIfTrebleEnabled(target_zip, output_zip, target_info,
+ 
+   # Full OTA carries the info for system/vendor both.
+   if source_info is None:
+-    AddCompatibilityArchive(True, True)
++    #AddCompatibilityArchive(True, True)
+     return
+ 
+   assert not source_info.oem_props
+@@ -718,7 +718,7 @@ def AddCompatibilityArchiveIfTrebleEnabled(target_zip, output_zip, target_info,
+       "ro.vendor.build.fingerprint")
+   vendor_updated = source_fp_vendor != target_fp_vendor
+ 
+-  AddCompatibilityArchive(system_updated, vendor_updated)
++  #AddCompatibilityArchive(system_updated, vendor_updated)
+ 
+ 
+ def CopyInstallTools(output_zip):
+@@ -869,7 +869,7 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
+     vendor_diff = common.BlockDifference("vendor", vendor_tgt)
+     vendor_diff.WriteScript(script, output_zip)
+ 
+-  AddCompatibilityArchiveIfTrebleEnabled(input_zip, output_zip, target_info)
++  #AddCompatibilityArchiveIfTrebleEnabled(input_zip, output_zip, target_info)
+ 
+   common.CheckSize(boot_img.data, "boot.img", target_info)
+   common.ZipWriteStr(output_zip, "boot.img", boot_img.data)
+@@ -1460,8 +1460,8 @@ def WriteBlockIncrementalOTAPackage(target_zip, source_zip, output_file):
+   else:
+     vendor_diff = None
+ 
+-  AddCompatibilityArchiveIfTrebleEnabled(
+-      target_zip, output_zip, target_info, source_info)
++  #AddCompatibilityArchiveIfTrebleEnabled(
++  #    target_zip, output_zip, target_info, source_info)
+ 
+   # Assertions (e.g. device properties check).
+   target_info.WriteDeviceAssertions(script, OPTIONS.oem_no_mount)
+@@ -1798,8 +1798,8 @@ def WriteABOTAPackageWithBrilloScript(target_file, output_file,
+     else:
+       print("Warning: cannot find care map file in target_file package")
+ 
+-  AddCompatibilityArchiveIfTrebleEnabled(
+-      target_zip, output_zip, target_info, source_info)
++  #AddCompatibilityArchiveIfTrebleEnabled(
++  #    target_zip, output_zip, target_info, source_info)
+ 
+   common.ZipClose(target_zip)
+ 

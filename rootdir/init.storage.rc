@@ -1,0 +1,13 @@
+######
+# for sprd storage design
+# @{
+on boot
+    write /sys/class/android_usb/android0/f_mass_storage/board_support_luns 1
+on early-fs
+    export EXTERNAL_STORAGE /storage/self/primary
+
+    symlink /mnt/user/0/emulated /mnt/runtime/default/self/emulated
+
+# @}
+######
+

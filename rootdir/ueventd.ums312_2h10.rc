@@ -1,0 +1,96 @@
+/dev/sttygnss0          0660     system      system
+/dev/spipe_gnss0        0660     system      system
+/dev/spipe_gnss1        0660     system      system
+
+/dev/slog_gnss          0660     system      system
+/dev/slog_wcn0           0660     system      system
+/dev/ttyS3              0660     system      system
+/dev/ttyS2              0660     system      system
+/dev/ttyS0              0660     system      system
+/dev/power_ctl          0660     system      system
+/dev/gnss_dbg           0660     system      system
+/dev/fm                 0660     media       media
+/dev/ttyM0              0660     bluetooth   net_bt_admin
+/dev/ttyM1              0660     bluetooth   net_bt_admin
+/dev/trusty-ipc-dev0    0660     system      system
+/dev/sttybt0            0660     bluetooth   net_bt_admin
+/dev/ttyBT0             0660     bluetooth   net_bt_admin
+
+/dev/trusty-ipc-dev0    0660     system      system
+/dev/stty_lte*          0660     radio       system
+/dev/slog_lte           0660     system      system
+/dev/slog_pm            0660     system      system
+/dev/sctl_pm            0660     system      system
+/dev/sdiag_lte          0660     system      system
+/dev/spipe_lte*         0660     system      system
+/dev/spipe_lte5         0660     radio      system
+/dev/spipe_lte4         0660     media       audio
+/dev/spipe_lte6         0660     media       audio
+/dev/spipe_lte14        0660     media       audio
+/dev/spipe_pm*          0666     system      system
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/l_*       0660     system      system
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/pm_sys       0660     system      system
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/miscdata       0660     system      system
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/persist       0660     system      system
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/system       0660     system      system
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/gpsgl       0660     system      root
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/gpsbd       0660     system      root
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/gnssmodem       0660     system      root
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/l_agdsp 0600 audioserver audio
+
+/dev/block/mmcblk1p*    0660     system      system
+/dev/AKM099XX           0660     system      system
+/dev/block/mmcblk0rpmb  0660     system      system
+
+/dev/vser               0660     system      system
+/dev/ttyGS*             0660     system      system
+
+/dev/ion                0666     system      graphics
+/dev/pvr_sync           0666     system      graphics
+/dev/gsp                0660     system      graphics
+
+/dev/sprd_jpg           0666     system      camera
+/dev/sprd_jpg1          0660     system      camera
+/dev/sprd_vsp           0660     system      camera
+/dev/sprd_vpp           0660     system      camera
+/dev/sprd_vsp_enc       0660     system      camera
+
+/dev/sprd_image         0660     system      camera
+/dev/sprd_isp           0660     system      camera
+/dev/sprd_sensor        0660     system      camera
+/dev/sprd_cpp           0660     system      camera
+/dev/sprd_fd            0660     system      camera
+/dev/map_user           0660     system      system
+
+/sys/devices/system/cpu/cpu* /cpufreq/interactive/boost 0660 media system
+/sys/devices/system/cpu/cpu* /cpufreq/interactive/boostpulse 0660 system system
+/sys/devices/system/cpu/cpu* /cpufreq/interactive/boostpulse_duration 0660 system system
+/sys/devices/system/cpu/cpu* /cpufreq/interactive/timer_rate 0660 system system
+/sys/devices/system/cpu/cpu* /cpufreq/interactive/hispeed_freq 0660 system system
+/sys/devices/system/cpu/cpu* /cpufreq/interactive/target_loads 0660 system system
+/sys/devices/system/cpu/cpu* /cpufreq/interactive/above_hispeed_delay 0660 system system
+/sys/devices/system/cpu/cpu* /cpufreq/interactive/timer_slack 0660 system system
+/sys/devices/system/cpu/cpu* /cpufreq/interactive/min_sample_time 0660 system system
+/sys/devices/system/cpu/cpu* /cpufreq/interactive/io_is_busy 0660 system system
+
+/dev/input/event*       0660     system      input
+/sys/devices/virtual/input/input*   acc_enable      0660  system   input
+/sys/devices/virtual/input/input*   acc_delay      0660  system   input
+/sys/devices/virtual/input/input*   gyro_enable      0660  system   input
+/sys/devices/virtual/input/input*   gyro_delay      0660  system   input
+/sys/devices/virtual/input/input*   enable      0660  system   input
+/sys/devices/virtual/input/input*   delay      0660  system   input
+/sys/devices/virtual/input/input*   chip_info      0660  system   input
+/dev/ltr_558als      0660  system   input
+/sys/class/xr-gsensor/device/gsensor      0660  system   input
+/sys/class/xr-gsensor/device/delay_acc      0660  system   input
+/sys/class/xr-pls/device/als      0660  system   input
+/sys/class/xr-pls/device/proximity      0660  system   input
+
+/sys/devices/platform/soc/soc:aon/32100000.spi/spi_master/spi4/spi4.0/sc27xx-bltc/leds/sc27xx:red hw_pattern 0660 system system
+/sys/devices/platform/soc/soc:aon/32100000.spi/spi_master/spi4/spi4.0/sc27xx-bltc/leds/sc27xx:green hw_pattern 0660 system system
+/sys/devices/platform/soc/soc:aon/32100000.spi/spi_master/spi4/spi4.0/sc27xx-bltc/leds/sc27xx:blue hw_pattern 0660 system system
+/sys/class/gpio_test export 0220 root system
+/sys/class/gpio_test unexport 0220 root system
+
+/dev/rtc*             0666     system      system

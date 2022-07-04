@@ -1,0 +1,622 @@
+import /vendor/etc/init/hw/init.${ro.hardware}.usb.rc
+import /vendor/etc/init/hw/init.ram.rc
+import /vendor/etc/init/hw/init.storage.rc
+
+on early-init
+    mount debugfs debugfs /sys/kernel/debug
+    chmod 755 /sys/kernel/debug
+
+    #set logd property
+    setprop logd.klogd false
+    setprop logd.kernel false
+    mkdir /dev/socket/ylog 0755 system system
+    mkdir /dev/socket/ylog_lite 0755 system system
+    mkdir /vendor/etc/seccomp_policy 0777 media system
+
+    chown system system /sys/bus/iio/devices/trigger0/name
+    chown system system /sys/bus/iio/devices/iio:device0/buffer
+    chown system system /sys/bus/iio/devices/iio:device0/buffer/length
+    chown system system /sys/bus/iio/devices/iio:device0/buffer/enable
+    chown system system /sys/bus/iio/devices/iio:device0/trigger/current_trigger
+    chmod 660 /sys/bus/iio/devices/trigger0/name
+    chmod 660 /sys/bus/iio/devices/iio:device0/buffer/length
+    chmod 660 /sys/bus/iio/devices/iio:device0/buffer/enable
+    chmod 660 /sys/bus/iio/devices/iio:device0/trigger/current_trigger
+	
+	chmod 666 /sys/hdmi/lcdbl
+
+    #set MEMLOCK resource limit 8M
+    setrlimit 8 0x7fffff 0x7fffff
+
+on init
+    mkdir /mnt/vendor/productinfo 0771 system system
+    # SPRD: add for storage manage @{
+    export EMULATED_STORAGE /storage/self/emulated
+    export PHYSICAL_STORAGE /storage/sdcard0
+    export USBDISK_STORAGE /storage/usbdisk
+    symlink /storage/self/primary /mnt/sdcard
+    # @}
+
+# SPRD: add for OTG usb disk @{
+    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
+    mkdir /storage/usbdisk 0700 system system
+    symlink /storage/usbdisk /mnt/usbdisk
+# @}
+
+    # config sched tune
+    write /dev/stune/top-app/schedtune.boost 15
+    write /dev/stune/top-app/schedtune.account_wait_time 1
+    write /dev/stune/top-app/schedtune.init_task_load_pct 45
+
+on fs
+    ubiattach 0 ubipac
+    # exec /sbin/resize2fs -ef /fstab.${ro.hardware}
+    mount_all /vendor/etc/fstab.${ro.hardware}
+
+    mount pstore pstore /sys/fs/pstore
+    setprop ro.crypto.fuse_sdcard true
+    symlink /system/res /res
+    symlink /system/bin /bin
+
+    #Allow others to read fb devices
+    chmod 660 /dev/graphics/fb0
+    chmod 660 /dev/fb0
+
+    chmod 666 /dev/adf0
+    chmod 666 /dev/adf-interface0.0
+    chmod 666 /dev/adf-overlay-engine0.0
+
+on post-fs
+    insmod vendor/lib/modules/pvrsrvkm.ko
+    #bypass the gpu during the prior_bringu
+    #setprop ro.kernel.qemu 1
+    #setprop ro.kernel.qemu.gles 0
+    chmod 0775 /mnt/vendor
+    chown system system /mnt/vendor
+    chown system system /productinfo
+    chmod 0771 /productinfo
+    mkdir /productinfo/wcn 0755 root root
+    chown system system /vendor/productinfo
+    chmod 0771 /vendor/productinfo
+    chmod 0666 /dev/pvr_sync
+    chown system system /dev/pvr_sync
+    chmod 0755 /sys/kernel/debug/tracing
+
+    chown system system /dev/iio:device0
+    chown system system /sys/class/sprd_sensorhub/sensor_hub/iio/trigger/current_trigger
+    chown system system /sys/class/sprd_sensorhub/sensor_hub/batch
+    chown system system /sys/class/sprd_sensorhub/sensor_hub/logctl
+    chown system system /sys/class/sprd_sensorhub/sensor_hub/calibrator_cmd
+    chown system system /sys/class/sprd_sensorhub/sensor_hub/calibrator_data
+    chown system system /sys/class/sprd_sensorhub/sensor_hub/enable
+    chown system system /sys/class/sprd_sensorhub/sensor_hub/flush
+    chown system system /sys/class/sprd_sensorhub/sensor_hub/iio
+    chown system system /sys/class/sprd_sensorhub/sensor_hub/version
+    chown system system /sys/class/sprd_sensorhub/sensor_hub/op_download
+    chown system system /sys/class/sprd_sensorhub/sensor_hub/mag_cali_flag
+    chown system system /sys/class/sprd_sensorhub/sensor_hub/sensorhub
+
+    chmod 660 /sys/class/sprd_sensorhub/sensor_hub/iio/trigger/current_trigger
+    chmod 660 /sys/class/sprd_sensorhub/sensor_hub/batch
+    chmod 660 /sys/class/sprd_sensorhub/sensor_hub/logctl
+    chmod 660 /sys/class/sprd_sensorhub/sensor_hub/calibrator_cmd
+    chmod 660 /sys/class/sprd_sensorhub/sensor_hub/calibrator_data
+    chmod 660 /sys/class/sprd_sensorhub/sensor_hub/enable
+    chmod 660 /sys/class/sprd_sensorhub/sensor_hub/flush
+    chmod 660 /sys/class/sprd_sensorhub/sensor_hub/iio
+    chmod 660 /sys/class/sprd_sensorhub/sensor_hub/version
+    chmod 660 /sys/class/sprd_sensorhub/sensor_hub/op_download
+    chmod 660 /sys/class/sprd_sensorhub/sensor_hub/mag_cali_flag
+    chmod 660 /sys/class/sprd_sensorhub/sensor_hub/sensorhub
+
+on late-fs
+    write /sys/block/mmcblk0/queue/read_ahead_kb 2048
+
+on post-fs-data
+    mkdir /data/vendor/local 0751 root root
+    mkdir /data/vendor/local/englog 0777
+    mkdir /data/vendor/local/slogmodem 0770 shell system
+    mkdir /mnt/vendor/productinfo 0771 system root
+    mkdir /data/vendor/local/otpdata 0777 system root
+    mkdir /data/vendor/ylog 0770 shell system
+    mkdir /data/vendor/local/mlogservice 0770 shell system
+    mkdir /data/vendor/mcue 0777 media system
+    mkdir /mnt/vendor/sensorhub 0777 system system
+    mkdir /mnt/vendor/productinfo 0771 system root
+    mkdir /mnt/vendor/productinfo/sensor_calibration_data 0770 system root
+    mkdir /mnt/vendor/enhance 0771 system system
+    setprop vold.post_fs_data_done 1
+    #mkdir /data/sprdinfo 0771 system system
+    #chown system system /data/sprdinfo/apr.conf
+    #mkdir /data/apr 0777 system system
+    #chown system system /data/apr.conf
+    mkdir /cache/ylog 0777
+
+    mkdir /mnt/vendor/productinfo/otpdata 0777 system root
+
+    chmod 666     /sys/module/shub_core/parameters/gryo_firms
+    chmod 666     /sys/module/shub_core/parameters/acc_firms
+    chmod 666     /sys/module/shub_core/parameters/mag_firms
+    chmod 666     /sys/module/shub_core/parameters/pressure_firms
+    chmod 666     /sys/module/shub_core/parameters/light_firms
+    chmod 666     /sys/module/shub_core/parameters/prox_firms
+    chmod 666     /sys/module/firmware_class/parameters/path
+    chmod 666     /sys/module/shub_core/parameters/sensor_fusion_mode
+	
+	setprop debug.sysdump.enabled false
+	setprop vendor.debug.sysdump.enabled false
+#power-tool
+    mkdir /vendor/bin/power  0555 shell shell
+    chmod 0555 /vendor/bin/power/backlight/brightness
+    chmod 0555 /vendor/bin/power/interrupts
+    chmod 0555 /vendor/bin/power/top
+    chmod 0555 /vendor/bin/power/fps
+    chmod 0555 /vendor/bin/power/paras/tool/power_ctrl
+    chmod 0555 /vendor/bin/power/paras/tool/power_hint
+
+    chmod 0555 /vendor/bin/power/cpu/hotplug/cpu_hotplug
+    chmod 0555 /vendor/bin/power/cpu/loading/cpu_loading
+    chmod 0555 /vendor/bin/power/cpu/trans_table/cpu_trans_table
+    chmod 0555 /vendor/bin/power/cpu/dvfs/dvfs_table
+    chmod 0555 /vendor/bin/power/cpu/fix_freq/fix_cpu_freq
+    chmod 0555 /vendor/bin/power/cpu/lit_freq/lit_cpu_freq
+
+    chmod 0555 /vendor/bin/power/ddr/bm/tool/ddr_bm
+    chmod 0555 /vendor/bin/power/ddr/bm/tool/ddr_bm_log
+    chmod 0555 /vendor/bin/power/ddr/loading/ddr_loading
+    chmod 0555 /vendor/bin/power/ddr/trans_table/ddr_trans_table
+    chmod 0555 /vendor/bin/power/ddr/fix_freq/fix_ddr_freq
+
+    chmod 0555 /vendor/bin/power/gpu/fix_freq/fix_gpu_freq
+    chmod 0555 /vendor/bin/power/gpu/loading/gpu_loading
+    chmod 0555 /vendor/bin/power/gpu/trans_table/gpu_trans_table
+
+#add gnss dir
+    mkdir /data/vendor/gnss/ 0777 system system
+    mkdir /data/vendor/gnss/bin/ 0777 system system
+    mkdir /data/vendor/gnss/supl/ 0777 system system
+    mkdir /data/vendor/gnss/config/ 0777 system system
+    mkdir /data/vendor/gnss/lte/ 0777 system system
+    chown system system /data/vendor/gnss/bin/gnssmodem.bin
+    chown system system /data/vendor/gnss/config/config.xml
+    chown system system /data/vendor/gnss/supl/supl.xml
+    chown system system /data/vendor/gnss/supl/spirentroot.cer
+    chown system system /data/vendor/gnss/lte/ext.eph
+    chown system system /data/vendor/gnss/lte/jpleph.405
+    chown system system /data/vendor/gnss/lte/raw.obs
+    chown system system /data/vendor/gnss/gnss.log
+    chown system system /data/vendor/gnss/nmea.log
+    chown system system /mnt/vendor/tsx.dat
+    chown system system /mnt/vendor/txdata.txt
+    chown system system /data/vendor/gnss/FlashCfg.cg
+    chmod 666 /data/vendor/gnss/bin/gnssmodem.bin
+    chmod 666 /data/vendor/gnss/config/config.xml
+    chmod 660 /data/vendor/gnss/supl/supl.xml
+    chmod 660 /data/vendor/gnss/supl/spirentroot.cer
+    chmod 666 /data/vendor/gnss/lte/ext.eph
+    chmod 666 /data/vendor/gnss/lte/jpleph.405
+    chmod 660 /data/vendor/gnss/lte/raw.obs
+    chmod 666 /data/vendor/gnss/gnss.log
+    chmod 666 /data/vendor/gnss/nmea.log
+    chown system system /mnt/vendor/tsx.dat
+    chown system system /mnt/vendor/txdata.txt
+    chmod 666 /data/vendor/gnss/FlashCfg.cg
+
+#add wifi dir
+    mkdir /data/vendor/wifi/ 0770 wifi wifi
+    mkdir /data/vendor/wifi/wpa 0770 wifi wifi
+    mkdir /data/vendor/wifi/wpa/sockets 0770 wifi wifi
+    mkdir /etc/wifi 0770 wifi wifi
+    write /data/vendor/wifi/fwpath sta_mode
+    chmod 660 /data/vendor/wifi/fwpath
+    chown wifi wifi /data/vendor/wifi/fwpath
+    setprop wifi.interface wlan0
+    setprop debug.sf.disable_backpressure 1
+    setprop debug.sf.latch_unsignaled 1
+    mkdir /data/vendor/thermald 0770 system system
+    chown system system /data/vendor/thermald
+
+    # Support audio
+    mkdir /data/vendor/local/media 0770 audioserver system
+    mkdir /data/vendor/local/media/audio_params 0770 audioserver audio
+    mkdir /mnt/vendor/audio 0770 audioserver audio
+    #start aprd
+    # Support audio test
+    chown audioserver audio /sys/devices/platform/audiocp_boot/agdsp
+    chown audioserver audio /sys/devices/platform/audiocp_boot/ldinfo
+    chown audioserver audio /sys/devices/platform/audiocp_boot/start
+    chown audioserver audio /sys/devices/platform/audiocp_boot/status
+    chown audioserver audio /sys/devices/platform/audiocp_boot/stop
+    chown audioserver audio /dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/l_agdsp
+    chown audioserver audio /dev/audio_pipe
+    chmod 660   /dev/audio_pipe
+    chmod 666   /dev/audio_dsp_log
+    chmod 666   /dev/audio_dsp_pcm
+    chmod 666   /dev/audio_dsp_mem
+    chmod 660   /dev/audio_pipe_effect
+    chmod 660   /dev/audio_pipe_recordproc
+    chmod 660   /dev/audio_pipe_voice
+    chown  audioserver audio  /dev/audio_dsp_log
+    chown  audioserver audio  /dev/audio_dsp_pcm
+    chown  audioserver audio  /dev/audio_dsp_mem
+    chown  audioserver audio  /dev/audio_pipe_effect
+    chown  audioserver audio  /dev/audio_pipe_recordproc
+    chown  audioserver audio  /dev/audio_pipe_voice
+    setprop ro.audio.offload_wakelock 0
+
+service p2p_supplicant /vendor/bin/hw/wpa_supplicant \
+    -iwlan0 -Dnl80211 -c/data/vendor/wifi/wpa/wpa_supplicant.conf \
+    -m/data/vendor/wifi/wpa/p2p_supplicant.conf \
+    -puse_p2p_group_interface=1p2p_device=1 \
+    -e/data/vendor/wifi/wpa/entropy.bin -g@android:wpa_wlan0 -dd
+    #   we will start as root and wpa_supplicant will switch to user wifi
+    #   after setting up the capabilities required for WEXT
+    #   user wifi
+    #   group wifi inet keystore
+    class main
+    socket wpa_wlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
+
+service vendor.wpa_supplicant /vendor/bin/hw/wpa_supplicant \
+    -Dnl80211 -iwlan0 -c/data/vendor/wifi/wpa/wpa_supplicant.conf \
+    -e/data/vendor/wifi/entropy.bin -g@android:wpa_wlan0 -dd
+    group system wifi inet keystore
+    socket wpa_wlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
+
+service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
+    -e/data/vendor/wifi/entropy.bin -g@android:wpa_wlan0 -dd
+#   we will start as root and wpa_supplicant will switch to user wifi
+#   after setting up the capabilities required for WEXT
+#   user wifi
+#   group wifi inet keystore
+    interface android.hardware.wifi.supplicant@1.0::ISupplicant default
+    interface android.hardware.wifi.supplicant@1.1::ISupplicant default
+    class main
+    socket wpa_wlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
+
+
+on boot
+    chown system system /sys/class/misc/gnss_common_ctl/gnss_power_enable
+    chown system system /sys/class/misc/gnss_common_ctl/gnss_dump
+    chown system system /sys/class/misc/gnss_common_ctl/gnss_subsys
+    chown system system /dev/gnss_pmnotify_ctl
+    chmod  220 /sys/class/misc/gnss_common_ctl/gnss_power_enable
+    chmod 660 /sys/class/misc/gnss_common_ctl/gnss_dump
+    chmod 660 /sys/class/misc/gnss_common_ctl/gnss_subsys
+    chmod 660  /dev/gnss_pmnotify_ctl
+    chmod 666 /sys/class/modem/debug-log/channel
+    chmod 644 /proc/reserve_space/black_list
+    chmod 644 /proc/reserve_space/white_list
+    chmod 644 /proc/reserve_space/black_list_comm
+    chmod 640 /proc/reserve_space/white_list_comm
+    chmod 644 /proc/reserve_space/app_guid
+    write /proc/reserve_space/black_list "1001,1002,1005,1006,1012,1013,1022,1023,1024,1025,2000,9999,"
+    write /proc/reserve_space/white_list "1061,10000,10023,10074,10075,"
+    write /proc/reserve_space/black_list_comm "slog,"
+    write /proc/reserve_space/white_list_comm "launcher-loader,droid.launcher3,AndroidTestSuit,"
+    write /proc/reserve_space/app_guid "10000"
+    write /proc/sys/net/core/rmem_max 8388608
+    #bug 713396 expand the wmem buffer for adb uplink test
+    write /proc/sys/net/core/wmem_max 3145728
+    write /proc/sys/net/core/wmem_default 1048576
+
+#for thermal
+    chown system system /sys/class/thermal/thermal_zone0/trip_point_0_temp
+    chown system system /sys/class/thermal/thermal_zone0/trip_point_1_temp
+    chown system system /sys/class/power_supply/battery/charge_control_limit
+    chown system system /sys/class/thermal/cooling_device1/min_core_num
+    chown system system /sys/class/thermal/cooling_device1/min_freq
+
+
+#modify permission for flashlight attributes file
+    chown cameraserver system /sys/devices/virtual/misc/sprd_flash/test
+    chmod 660 /sys/devices/virtual/misc/sprd_flash/test
+    chown cameraserver system /sys/devices/virtual/misc/sprd_sensor/camera_sensor_name
+    chmod 660 /sys/devices/virtual/misc/sprd_sensor/camera_sensor_name
+
+
+# chown for engineermode
+    chown system system /sys/class/power_supply/battery/stop_charge
+    chmod 0664 /sys/class/power_supply/battery/stop_charge
+    chmod 660 /sys/class/power_supply/battery/charger.0/stop_charge
+    chmod 0666 /sys/class/power_supply/sprdfgu/cc_test_cmd
+    chmod 660 /sys/class/power_supply/battery/input_current_limit
+    chmod 660 /sys/class/power_supply/battery/constant_charge_current
+
+    chown media system /sys/kernel/hmp/boost
+    chown system system /sys/kernel/hmp/boostpulse
+    chown media system /sys/kernel/hmp/packing_boost
+    chown system system /sys/kernel/hmp/packing_boostpulse
+    chown system system /sys/kernel/hmp/boostpulse_duration
+
+    chmod 660 /sys/kernel/hmp/boost
+    chmod 660 /sys/kernel/hmp/boostpulse
+    chmod 660 /sys/kernel/hmp/packing_boost
+    chmod 660 /sys/kernel/hmp/packing_boostpulse
+    chmod 660 /sys/kernel/hmp/boostpulse_duration
+
+#for ipa of EngineerMode
+    chmod 660 /sys/class/thermal/thermal_zone0/thm_enable
+    chown system system /sys/class/thermal/thermal_zone0/thm_enable
+
+#for sysdump
+    chown system system /proc/sprd_sysdump
+
+    # for power-hint HAL
+    # Cpu hotplug boost
+    chown system system /sys/devices/system/cpu/cpuhotplug/boostpulse
+    chown system system /sys/devices/system/cpu/cpuhotplug/boostpulse_duration
+    chmod 0660 /sys/devices/system/cpu/cpuhotplug/boostpulse
+    chmod 0660 /sys/devices/system/cpu/cpuhotplug/boostpulse_duration
+    chown system system /sys/devices/system/cpu/cpuhotplug/cluster0_core_max_limit
+    chown system system /sys/devices/system/cpu/cpuhotplug/cluster0_core_min_limit
+    chmod 0660 /sys/devices/system/cpu/cpuhotplug/cluster0_core_max_limit
+    chmod 0660 /sys/devices/system/cpu/cpuhotplug/cluster0_core_max_limit
+
+    chown system system /sys/devices/system/cpu/cpuhotplug/dynamic_load_disable
+    chmod 0660 /sys/devices/system/cpu/cpuhotplug/dynamic_load_disable
+    write /sys/devices/system/cpu/cpuhotplug/dynamic_load_disable 1
+    chown system system /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
+    chmod 666 /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
+
+    # for devfreq ddr
+    chmod 664 /sys/class/devfreq/scene-frequency/sprd_governor/scenario_dfs
+    chown cameraserver system /sys/class/devfreq/scene-frequency/sprd_governor/scenario_dfs
+    chmod 664 /sys/class/devfreq/scene-frequency/sprd_governor/exit_scene
+    chown cameraserver system /sys/class/devfreq/scene-frequency/sprd_governor/exit_scene
+    chmod 664 /sys/class/devfreq/scene-frequency/sprd_governor/scene_boost_dfs
+    chown cameraserver system /sys/class/devfreq/scene-frequency/sprd_governor/scene_boost_dfs
+    chown media system /sys/class/devfreq/scene-frequency/sprd_governor/scene_boost_dfs
+
+# for devfreq mm
+    chmod 660 /sys/class/devfreq/isp-dvfs/isp_governor/set_work_freq
+    chown cameraserver system /sys/class/devfreq/isp-dvfs/isp_governor/set_work_freq
+    chmod 660 /sys/class/devfreq/dcam-if-dvfs/dcam-if_governor/set_work_freq
+    chown cameraserver system /sys/class/devfreq/dcam-if-dvfs/dcam-if_governor/set_work_freq
+    chmod 660 /sys/class/devfreq/isp-dvfs/isp_governor/set_work_index
+    chown cameraserver system /sys/class/devfreq/isp-dvfs/isp_governor/set_work_index
+    chmod 660 /sys/class/devfreq/dcam-if-dvfs/dcam-if_governor/set_work_index
+    chown cameraserver system /sys/class/devfreq/dcam-if-dvfs/dcam-if_governor/set_work_index
+    chmod 660 /sys/class/devfreq/isp-dvfs/isp_governor/set_hw_dvfs_en
+    chown cameraserver system /sys/class/devfreq/isp-dvfs/isp_governor/set_hw_dvfs_en
+    chmod 660 /sys/class/devfreq/fd-dvfs/fd_governor/set_work_index
+    chown cameraserver system /sys/class/devfreq/fd-dvfs/fd_governor/set_work_index
+
+#for engineer mode
+    chown system system /sys/devices/platform/soc/soc:aon/32100000.spi/spi_master/spi4/spi4.0/sc27xx-7sreset/hard_mode
+
+on property:persist.vendor.eng.reset=0
+    write /sys/devices/platform/soc/soc:aon/32100000.spi/spi_master/spi4/spi4.0/sc27xx-7sreset/hard_mode 0
+
+on property:persist.vendor.eng.reset=1
+    write /sys/devices/platform/soc/soc:aon/32100000.spi/spi_master/spi4/spi4.0/sc27xx-7sreset/hard_mode 1
+
+on property:persist.vendor.eng.sprdwl=1
+    insmod /lib/modules/sprdwl_ng.ko
+
+on property:persist.vendor.eng.sprdwl=0
+    rmmod /lib/modules/sprdwl_ng.ko
+
+
+
+on early-boot
+    chmod 660 /proc/pmic/stop
+    chmod 660 /proc/pmic/start
+    chmod 660 /proc/pmic/pm_sys
+    chmod 440 /proc/pmic/mem
+    chmod 660 /proc/pmic/status
+    chmod 660 /proc/pmic/wdtirq
+    chmod 666 root /proc/pmic/cali_lib
+    chmod 660 /proc/pmic/ldinfo
+
+    chown system root /proc/pmic/stop
+    chown system root /proc/pmic/start
+    chown system root /proc/pmic/pm_sys
+    chown system root /proc/pmic/mem
+    chown system root /proc/pmic/status
+    chown system root /proc/pmic/wdtirq
+    chown system root /proc/pmic/cali_lib
+    chown system root /proc/pmic/ldinfo
+
+    chmod 660 /proc/cptl/wdtirq
+    chmod 660 /proc/cptl/stop
+    chmod 660 /proc/cptl/start
+    chmod 660 /proc/cptl/modem
+    chmod 660 /proc/cptl/deltanv
+    chmod 660 /proc/cptl/gdsp
+    chmod 660 /proc/cptl/ldsp
+    chmod 660 /proc/cptl/cdsp
+    chmod 660 /proc/cptl/fixnv
+    chmod 660 /proc/cptl/runnv
+    chmod 660 /proc/cptl/cpcmdline
+    chmod 440 /proc/cptl/ldinfo
+    chmod 440 /proc/cptl/mini_dump
+    chmod 440 /proc/cptl/mem
+
+    # ETB info file
+    chown system system /dev/1003000.tmc
+    chmod 660 /dev/1003000.tmc
+
+    chown system root /proc/cptl/wdtirq
+    chown system root /proc/cptl/stop
+    chown system root /proc/cptl/start
+    chown system root /proc/cptl/modem
+    chown system root /proc/cptl/deltanv
+    chown system root /proc/cptl/ldsp
+    chown system root /proc/cptl/cdsp
+    chown system root /proc/cptl/gdsp
+    chown system root /proc/cptl/fixnv
+    chown system root /proc/cptl/runnv
+    chown system root /proc/cptl/cpcmdline
+    chown system root /proc/cptl/ldinfo
+    chown system system /proc/cptl/mini_dump
+    chown system system /proc/cptl/mem
+
+    chown radio radio /sys/power/wake_lock
+    chown radio radio /sys/power/wake_unlock
+
+    #add for engineermode
+    chown system system /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+    chown system system /sys/devices/system/cpu/cpufreq/policy0/scaling_setspeed
+    chmod 664 /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+    chown system system /sys/devices/system/cpu/cpufreq/policy3/scaling_governor
+    chown system system /sys/devices/system/cpu/cpufreq/policy3/scaling_setspeed
+    chmod 664 /sys/devices/system/cpu/cpufreq/policy3/scaling_governor
+
+#DBG LOG Ctrl
+    chmod 0660 /sys/class/modem/debug-log/freq
+    chmod 0660 /sys/class/modem/debug-log/channel
+    chown system system /sys/class/modem/debug-log/freq
+    chown system system /sys/class/modem/debug-log/channel
+
+    # ETB info file
+    chown system system /dev/tmc_etb
+    chmod 660 /dev/tmc_etb
+
+    chmod 0664 /dev/sctl_pm
+    chmod 0664 /dev/iq_mem
+    chmod 0660 /dev/sprd_bm
+    chmod 0660 /dev/dmc_mpu
+
+#for Display
+    chmod 0660 /sys/class/display/dphy0/hop
+    chmod 0660 /sys/class/display/dphy0/ssc
+    chmod 0660 /sys/class/display/panel0/name
+    chmod 666 /sys/class/display/dispc0/vsync_rate_report
+    chmod 0660 /sys/class/display/dispc0/bg_color
+    chmod 0660 /sys/class/display/dispc0/refresh
+    chmod 0660 /sys/class/display/dispc0/disable_flip
+    chmod 0664 /sys/class/backlight/sprd_backlight/brightness
+
+    chown system system /sys/class/display/dphy0/hop
+    chown system system /sys/class/display/dphy0/ssc
+    chown system system /sys/class/display/panel0/name
+    chown graphics system /sys/class/display/dispc0/vsync_rate_report
+    chown cameraserver system /sys/class/display/dispc0/bg_color
+    chown cameraserver system /sys/class/display/dispc0/refresh
+    chown cameraserver system /sys/class/display/dispc0/disable_flip
+
+    chmod 664 /sys/class/display/dispc0/PQ/slp
+    chmod 664 /sys/class/display/dispc0/PQ/cm
+    chmod 664 /sys/class/display/dispc0/PQ/gamma
+    chmod 664 /sys/class/display/dispc0/PQ/hsv
+    chmod 664 /sys/class/display/dispc0/PQ/epf
+    chmod 664 /sys/class/display/dispc0/PQ/scl
+    chmod 664 /sys/class/display/dispc0/PQ/ltm
+    chmod 664 /sys/class/display/dispc0/PQ/enable
+    chmod 664 /sys/class/display/dispc0/PQ/disable
+    chown system system /sys/class/display/dispc0/PQ/slp
+    chown system system /sys/class/display/dispc0/PQ/cm
+    chown system system /sys/class/display/dispc0/PQ/gamma
+    chown system system /sys/class/display/dispc0/PQ/hsv
+    chown system system /sys/class/display/dispc0/PQ/epf
+    chown system system /sys/class/display/dispc0/PQ/scl
+    chown system system /sys/class/display/dispc0/PQ/ltm
+    chown system system /sys/class/display/dispc0/PQ/enable
+    chown system system /sys/class/display/dispc0/PQ/disable
+
+    chown system system /sys/class/backlight/sprd_backlight/brightness
+    chown system system /sys/class/backlight/sprd_backlight/max_brightness
+    chown system system /dev/iq_mem
+    chown system system /dev/sprd_bm
+    chown system system /dev/dmc_mpu
+    chown system system /dev/sctl_pm
+
+    chown system system /proc/mdbg
+    chown system root /proc/mdbg/assert
+    chown system root /proc/mdbg/wdtirq
+    chown system system /proc/mdbg/at_cmd
+    chown system root /proc/mdbg/loopcheck
+
+    chmod 770 /proc/mdbg
+    chmod 760 /proc/mdbg/assert
+    chmod 760 /proc/mdbg/wdtirq
+    chmod 760 /proc/mdbg/at_cmd
+    chmod 760 /proc/mdbg/loopcheck
+
+# SIPC state files
+    chown system root /sys/kernel/debug/sipc/mbox
+    chown system root /sys/kernel/debug/sipc/sblock
+    chown system root /sys/kernel/debug/sipc/sbuf
+    chown system root /sys/kernel/debug/sipc/sipx
+    chown system root /sys/kernel/debug/sipc/smem
+    chown system root /sys/kernel/debug/sipc/smsg
+
+     mknod /dev/input c 5 0
+     chmod 755 /dev/input
+
+
+service dhcpcd_bnep0 /system/bin/dhcpcd -ABKL
+    class main
+    disabled
+    oneshot
+
+service iprenew_bnep0 /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+
+service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
+   disabled
+   oneshot
+
+service iprenew_bt-pan /system/bin/dhcpcd -n
+    disabled
+    oneshot
+
+service systemDebuggerd /vendor/bin/systemDebuggerd
+    # Don't start systemDebuggerd until after the real /data is mounted.
+    class late_start
+    user system
+    oneshot
+
+on property:vendor.debug.sysdump.enabled=true
+    write /proc/sprd_sysdump "on"
+    setprop persist.vendor.sysdump on
+
+on property:vendor.debug.sysdump.enabled=false
+    write /proc/sprd_sysdump "off"
+    setprop persist.vendor.sysdump off
+
+on property:vendor.debug.coredump=1
+    write /sys/module/smsg/parameters/debug_enable 1
+    exec /system/bin/chcon u:object_r:coredump_file:s0 /data/corefile
+
+
+# hwui cache adapter ram size
+on property:ro.vendor.ramsize=512M
+    setprop ro.vendor.hwui.texture_cache_size 36
+on property:ro.vendor.ramsize=768M
+    setprop ro.vendor.hwui.texture_cache_size 36
+on property:ro.vendor.ramsize=1024M
+    setprop ro.vendor.hwui.texture_cache_size 36
+on property:ro.vendor.ramsize=1536M
+    setprop ro.vendor.hwui.texture_cache_size 48
+on property:ro.vendor.ramsize=2048M
+    setprop ro.vendor.hwui.texture_cache_size 56
+
+on property:ro.vendor.ramsize=3072M
+    setprop ro.vendor.hwui.texture_cache_size 72
+
+on property:ro.vendor.ramsize=4096M
+    setprop ro.vendor.hwui.texture_cache_size 72
+
+on property:sys.boot_completed=1
+    write /sys/block/mmcblk0/queue/read_ahead_kb 128
+    # Setup final cpuset
+    write /dev/cpuset/top-app/cpus 0-3
+    write /dev/cpuset/foreground/boost/cpus 0-3
+    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/background/cpus 0-1
+    write /dev/cpuset/system-background/cpus 0-2
+
+on property:persist.sys.thermal.ipa=0
+    write /sys/class/thermal/thermal_zone0/thm_enable 0
+on property:persist.sys.thermal.ipa=1
+    write /sys/class/thermal/thermal_zone0/thm_enable 1
+	

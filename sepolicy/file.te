@@ -1,0 +1,2 @@
+# Productinfo partition
+type productinfo_file, file_type;

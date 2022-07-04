@@ -1,0 +1,2 @@
+#ZRAM
+/dev/block/zram0       none         swap    defaults    zramsize=55%
