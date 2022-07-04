@@ -119,7 +119,7 @@ PRODUCT_COPY_FILES += \
 # Recovery files
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/ueventd.ums312_2h10.rc:root/ueventd.ums312_2h10.rc \
-    $(LOCAL_PATH)/rootdir/init.ums312_2h10.usb.rc:root/init.recovery.ums312_2h10.rc
+    $(LOCAL_PATH)/recovery/init.recovery.ums312_2h10.rc:root/init.recovery.ums312_2h10.rc
 
 # Vendor default.prop
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
