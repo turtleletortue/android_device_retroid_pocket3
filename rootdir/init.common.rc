@@ -52,6 +52,7 @@ on fs
     #ubiattach 0 ubipac
     # exec /sbin/resize2fs -ef /fstab.${ro.hardware}
     mount_all /vendor/etc/fstab.${ro.hardware}
+    umount /product
 
     mount pstore pstore /sys/fs/pstore
     setprop ro.crypto.fuse_sdcard true
@@ -417,7 +418,6 @@ on early-boot
     chown system root /proc/pmic/stop
     chown system root /proc/pmic/start
     chown system root /proc/pmic/pm_sys
-    chown system root /proc/pmic/mem
     chown system root /proc/pmic/status
     chown system root /proc/pmic/wdtirq
     chown system root /proc/pmic/cali_lib
