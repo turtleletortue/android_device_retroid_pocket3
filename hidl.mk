@@ -13,8 +13,8 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-service
 
 # Cas
-PRODUCT_PACKAGES += \
-    android.hardware.cas@1.0-service
+#PRODUCT_PACKAGES += \
+#    android.hardware.cas@1.0-service
 
 # Configstore
 PRODUCT_PACKAGES += \
