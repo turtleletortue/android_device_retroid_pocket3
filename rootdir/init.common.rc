@@ -67,6 +67,9 @@ on fs
     chmod 666 /dev/adf-interface0.0
     chmod 666 /dev/adf-overlay-engine0.0
 
+    # Fix access to trusty-ipc-dev0
+    chmod 666 /dev/trusty-ipc-dev0
+
 on post-fs
     insmod vendor/lib/modules/pvrsrvkm.ko
     #bypass the gpu during the prior_bringu
