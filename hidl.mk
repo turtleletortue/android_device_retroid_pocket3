@@ -1,8 +1,8 @@
 # Audio
-PRODUCT_PACKAGES += \
-    android.hardware.audio.effect@4.0-impl \
-    android.hardware.audio@4.0-impl \
-    android.hardware.audio@2.0-service
+#PRODUCT_PACKAGES += \
+    #android.hardware.audio.effect@4.0-impl \
+    #android.hardware.audio@4.0-impl \
+    #android.hardware.audio@2.0-service
 
 # Broadcastradio
 PRODUCT_PACKAGES += \
