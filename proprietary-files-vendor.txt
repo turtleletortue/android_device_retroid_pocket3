@@ -48,7 +48,7 @@ vendor/etc/init/init.leddrv.rc
 vendor/etc/init/vendor.sprd.hardware.power@3.0-service.rc
 vendor/etc/init/cp_diskserver.rc
 vendor/etc/init/init.vl53L0.rc
-vendor/etc/init/vendor.sprd.hardware.thermal@1.0-service.rc
+#vendor/etc/init/vendor.sprd.hardware.thermal@1.0-service.rc
 
 # WiFi Config
 vendor/etc/wifi/wpa_supplicant.conf
@@ -134,7 +134,7 @@ vendor/bin/hw/vendor.sprd.hardware.gnss@2.0-service
 vendor/bin/hw/vendor.sprd.hardware.log@1.0-service
 vendor/bin/hw/vendor.sprd.hardware.network@1.0-service
 vendor/bin/hw/vendor.sprd.hardware.power@3.0-service
-vendor/bin/hw/vendor.sprd.hardware.thermal@1.0-service
+#vendor/bin/hw/vendor.sprd.hardware.thermal@1.0-service
 
 # Vendor power binaries
 vendor/bin/power/ddr/fix_freq/readme
