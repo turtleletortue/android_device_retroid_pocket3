@@ -32,7 +32,7 @@
 /dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/logo                  /logo               emmc    defaults    defaults
 /dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/fbootlogo             /fbootlogo          emmc    defaults    defaults
 
-/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/system                /             ext4    ro,barrier=1    wait
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/system                /system             ext4    ro,barrier=1    wait
 /dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/vendor                /vendor             ext4    ro,barrier=1    wait
 /dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/userdata              /data               f2fs    noatime,nosuid,nodev,discard,inline_xattr,inline_data    wait,encryptable=footer,check
 /dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/cache                 /cache              ext4    noatime,nosuid,nodev,nomblk_io_submit,noauto_da_alloc    wait,check

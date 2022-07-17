@@ -3,6 +3,8 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 # <src>                                         <mnt_point>  <type>  <mnt_flags and options>             <fs_mgr_flags>
 
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/system   /system      ext4   ro                 wait,first_stage_mount
+/dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/vendor   /vendor      ext4   ro                 wait,first_stage_mount
 /dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/userdata /data        f2fs noatime,nosuid,nodev,discard,inline_xattr,inline_data wait,check,reservedsize=128M,quota
 /dev/block/platform/soc/soc:ap-apb/71400000.sdio/by-name/cache    /cache       ext4 discard,noatime,nosuid,nodev,nomblk_io_submit,noauto_da_alloc wait,check
 /devices/platform/soc/soc:aon/5fff0000.usb/musb-hdrc.*.auto/usb*      auto         vfat defaults voldmanaged=usbdisk:auto
