@@ -33,7 +33,7 @@ service watchdogd /sbin/watchdogd 10 30
 	oneshot
 	seclabel u:r:watchdogd:s0
 
-on property:dev.bootcomplete=1
+on boot
 	start pservice
 
 service pservice /system/bin/pservice
