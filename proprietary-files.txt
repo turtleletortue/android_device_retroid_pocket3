@@ -20,3 +20,6 @@ lib64/libsystinyxml.so
 lib/libsystinycompress.so
 lib64/libsystinycompress.so
 
+# Performance Manager
+bin/performancemanager
+etc/init/performancemanager.rc
