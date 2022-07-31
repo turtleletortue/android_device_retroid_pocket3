@@ -36,6 +36,9 @@ service watchdogd /sbin/watchdogd 10 30
 on boot
 	start pservice
 
+on post-fs-data
+    exec_background /vendor/bin/firstboot-fix.sh
+
 service pservice /system/bin/pservice
     class core
 	disabled
