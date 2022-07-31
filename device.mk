@@ -134,6 +134,9 @@ PRODUCT_PACKAGES += \
     libaudiopolicyengineconfigurable \
     libwifi-system \
     libft2
+
+# Tablet characteristics
+PRODUCT_CHARACTERISTICS := tablet
     
 # VNDK
 PRODUCT_COPY_FILES += \
