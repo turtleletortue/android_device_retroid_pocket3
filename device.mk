@@ -131,6 +131,22 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     camera.disable_zsl_mode=1 \
     sys.usb.controller=musb-hdrc.0.auto \
 
+# t310 Surfaceflinger props
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.surface_flinger.vsync_event_phase_offset_ns=1000000 \
+    ro.surface_flinger.vsync_sf_event_phase_offset_ns=1000000 \
+    ro.surface_flinger.use_context_priority=true \
+    ro.surface_flinger.has_wide_color_display=false \
+    ro.surface_flinger.has_HDR_display=false \
+    ro.surface_flinger.present_time_offset_from_vsync_ns=0 \
+    ro.surface_flinger.force_hwc_copy_for_virtual_displays=false \
+    ro.surface_flinger.max_virtual_display_dimension=0 \
+    ro.surface_flinger.running_without_sync_framework=false \
+    ro.surface_flinger.use_vr_flinger=false \
+    ro.surface_flinger.max_frame_buffer_acquired_buffers=3 \
+    ro.surface_flinger.start_graphics_allocator_service=false \
+    ro.surface_flinger.primary_display_orientation=ORIENTATION_0 \
+
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay/aosp
 
