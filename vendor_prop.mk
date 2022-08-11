@@ -94,3 +94,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Pocket2plus controller prop
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.retro.name=2.5
+
+# Allow lockscreen rotation
+PRODUCT_PROPERTY_OVERRIDES += \
+    lockscreen.rot_override=true
+
