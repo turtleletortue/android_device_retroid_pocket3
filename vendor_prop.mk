@@ -89,5 +89,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.cam.ai.scence.enable=true \
     persist.vendor.cam.wt.enable=0 \
     persist.vendor.cam.faceid.version=1 \
-    config.disable_cameraservice=true \
+    config.disable_cameraservice=true
+
+# Pocket2plus controller prop
+PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.retro.name=2.5
