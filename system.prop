@@ -1,8 +1,8 @@
-rs.firmware.version=20220504
+rs.firmware.version=20220827
 rs.firmware.compatibility=RP3_Android9
 rs.firmware.name=1.0.0
 rs.hardware.version=GB835_MB_VD
-ro.rp2plus.ota.version=1.9.0.0
+ro.rp2plus.ota.version=1.10.0.0
 # end build properties
 #
 # from device/sprd/sharkl5/ums312_2h10/system.prop

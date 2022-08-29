@@ -2,7 +2,7 @@
 bin/pservice
 
 # Keylayouts (Necessary for device controller to work)
-usr/keylayout/Vendor_2020_Product_0111.kl
+usr/keylayout/Vendor_2022_Product_0111.kl
 
 # system/etc
 etc/audio_policy_criteria.conf
