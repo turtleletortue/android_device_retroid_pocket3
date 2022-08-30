@@ -11,4 +11,3 @@
 [ ! -L out/target/product/pocket2plus/vendor/lib/npidevice/libaudionpi.so ] && ln -s /vendor/lib/libaudionpi.so out/target/product/pocket2plus/vendor/lib/npidevice/libaudionpi.so
 [ ! -L out/target/product/pocket2plus/vendor/lib/npidevice/libnpi_rtc.so ] && ln -s /vendor/lib/libnpi_rtc.so out/target/product/pocket2plus/vendor/lib/npidevice/libnpi_rtc.so
 [ ! -L out/target/product/pocket2plus/vendor/lib/npidevice/libsensornpi.so ] && ln -s /vendor/lib/libsensornpi.so out/target/product/pocket2plus/vendor/lib/npidevice/libsensornpi.so
-echo "" > out/target/product/pocket2plus/dtb.img
