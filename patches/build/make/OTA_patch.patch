@@ -1,5 +1,5 @@
 diff --git a/tools/releasetools/ota_from_target_files.py b/tools/releasetools/ota_from_target_files.py
-index 0cff60f1a1..6fd124734d 100755
+index 0cff60f1a1..b1cf793dac 100755
 --- a/tools/releasetools/ota_from_target_files.py
 +++ b/tools/releasetools/ota_from_target_files.py
 @@ -845,7 +845,7 @@ def AddCompatibilityArchiveIfTrebleEnabled(target_zip, output_zip, target_info,
@@ -11,15 +11,17 @@ index 0cff60f1a1..6fd124734d 100755
      return
  
    source_fp = source_info.fingerprint
-@@ -863,7 +863,7 @@ def AddCompatibilityArchiveIfTrebleEnabled(target_zip, output_zip, target_info,
+@@ -863,8 +863,8 @@ def AddCompatibilityArchiveIfTrebleEnabled(target_zip, output_zip, target_info,
                  FingerprintChanged(source_info.odm_fingerprint,
                                     target_info.odm_fingerprint)
  
 -  AddCompatibilityArchive(system_updated or product_updated,
+-                          vendor_updated or odm_updated)
 +  #AddCompatibilityArchive(system_updated or product_updated,
-                           vendor_updated or odm_updated)
++  #                        vendor_updated or odm_updated)
  
  
+ def CopyInstallTools(output_zip):
 @@ -1096,7 +1096,7 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
                               progress=progress_dict.get(block_diff.partition),
                               write_verify_script=OPTIONS.verify)
