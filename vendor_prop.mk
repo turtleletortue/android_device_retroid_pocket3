@@ -67,7 +67,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.ag.log=/dev/audio_dsp_log \
     ro.vendor.ag.pcm=/dev/audio_dsp_pcm \
     ro.vendor.ag.mem=/dev/audio_dsp_mem \
-    ro.virtual_ab.enabled=true \
     ro.vendor.keybox.id.value=SPRD \
     ro.crypto.dm_default_key.options_format.version=2 \
     persist.vendor.bsservice.enable=1 \
