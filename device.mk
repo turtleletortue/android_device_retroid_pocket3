@@ -121,10 +121,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/ueventd.ums312_2h10.rc:root/ueventd.ums312_2h10.rc \
     $(LOCAL_PATH)/recovery/init.recovery.ums312_2h10.rc:root/init.recovery.ums312_2h10.rc
 
-# Firstboot fix (important)
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/firstboot-fix.sh:$(TARGET_COPY_OUT_VENDOR)/bin/firstboot-fix.sh
-
 # Vendor default.prop
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp,adb \
