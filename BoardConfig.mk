@@ -198,7 +198,7 @@ TARGET_SYSTEM_PROP += device/retroid/pocket2plus/system.prop
 USE_XML_AUDIO_POLICY_CONF := 1
 
 # Vendor Security Patch
-VENDOR_SECURITY_PATCH := 2020-01-05
+VENDOR_SECURITY_PATCH := 2021-08-05
 
 # Lun file
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.gs6/lun.%d/file
