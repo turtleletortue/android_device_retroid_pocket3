@@ -24,7 +24,6 @@ $(call inherit-product, $(LOCAL_PATH)/fixsymlinks/fixsymlinks.mk)
 
 # Device .rc files
 PRODUCT_PACKAGES += \
-    init.common.rc \
     init.ram.rc \
     init.storage.rc \
     init.ums312_2h10.rc \

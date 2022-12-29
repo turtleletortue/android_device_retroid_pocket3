@@ -1,44 +1,34 @@
-import /vendor/etc/init/hw/init.common.rc
+import /vendor/etc/init/hw/init.${ro.hardware}.usb.rc
+import /vendor/etc/init/hw/init.ram.rc
+import /vendor/etc/init/hw/init.storage.rc
+import /vendor/etc/init/hw/init.cali.rc
+import /vendor/etc/init/hw/init.factorytest.rc
 
 on init
-   start watchdogd
+    start watchdogd
 
 on post-fs-data
-    setprop fpga.target.enable 1
-    setprop debug.delaytime.min 10
-    setprop debug.delaytime.mid 100
-    setprop debug.delaytime.max 1000
-    setprop debug.android_watchdog.disable 1
-
-#modify permission for voicetrigger dev
-    chown system  audio /dev/rt5512
-    chmod 660     /dev/rt5512
-	chmod 666     /dev/rstouch
-
-#modify for tof calibration
-    chmod 666 /mnt/vendor/vl53l0_offset_calibration.file
-    chmod 666 /mnt/vendor/vl53l0_xtak_calibration.file
-
-#modify for sprd_pub_monitor
-    chown  shell system  /sys/kernel/debug/sprd_pub_monitor/enable
-on boot
-
-# block I/O vm.dirty parameters
-    write /proc/sys/vm/dirty_background_bytes 4194304
-    write /proc/sys/vm/dirty_bytes  52428800
+    setprop vold.post_fs_data_done 1
+    setprop debug.sf.disable_backpressure 1
+    setprop debug.sf.latch_unsignaled 1
 
 # Set watchdog timer to 30 seconds and pet it every 10 seconds to get a 20 second margin
-service watchdogd /sbin/watchdogd 10 30
-	class core
-	oneshot
-	seclabel u:r:watchdogd:s0
+service watchdogd /system/bin/watchdogd 10 30
+    class core
+    oneshot
+    seclabel u:r:watchdogd:s0
 
 on boot
-	start pservice
-
-service pservice /system/bin/pservice
-    class core
-	disabled
-    user root
-    group root
-	seclabel u:r:pservice:s0
+# for devfreq mm
+    chmod 660 /sys/class/devfreq/isp-dvfs/isp_governor/set_work_freq
+    chown cameraserver system /sys/class/devfreq/isp-dvfs/isp_governor/set_work_freq
+    chmod 660 /sys/class/devfreq/dcam-if-dvfs/dcam-if_governor/set_work_freq
+    chown cameraserver system /sys/class/devfreq/dcam-if-dvfs/dcam-if_governor/set_work_freq
+    chmod 660 /sys/class/devfreq/isp-dvfs/isp_governor/set_work_index
+    chown cameraserver system /sys/class/devfreq/isp-dvfs/isp_governor/set_work_index
+    chmod 660 /sys/class/devfreq/dcam-if-dvfs/dcam-if_governor/set_work_index
+    chown cameraserver system /sys/class/devfreq/dcam-if-dvfs/dcam-if_governor/set_work_index
+    chmod 660 /sys/class/devfreq/isp-dvfs/isp_governor/set_hw_dvfs_en
+    chown cameraserver system /sys/class/devfreq/isp-dvfs/isp_governor/set_hw_dvfs_en
+    chmod 660 /sys/class/devfreq/fd-dvfs/fd_governor/set_work_index
+    chown cameraserver system /sys/class/devfreq/fd-dvfs/fd_governor/set_work_index

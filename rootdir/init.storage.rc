@@ -1,13 +1,24 @@
-######
-# for sprd storage design
-# @{
 on boot
     write /sys/class/android_usb/android0/f_mass_storage/board_support_luns 1
+
 on early-fs
     export EXTERNAL_STORAGE /storage/self/primary
-
     symlink /mnt/user/0/emulated /mnt/runtime/default/self/emulated
 
-# @}
-######
+on init
+    mkdir /mnt/vendor/productinfo 0771 system system
+    # SPRD: add for storage manage @{
+    export EMULATED_STORAGE /storage/self/emulated
+    export PHYSICAL_STORAGE /storage/sdcard0
+    export USBDISK_STORAGE /storage/usbdisk
+    symlink /storage/self/primary /mnt/sdcard
+    # @}
 
+    # SPRD: add for OTG usb disk @{
+    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
+    mkdir /storage/usbdisk 0700 system system
+    symlink /storage/usbdisk /mnt/usbdisk
+    # @}
+
+on post-fs
+    mkdir /mnt/vendor/productinfo 0771 system system
