@@ -57,6 +57,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libdrm 
 
+# fastbootd
+PRODUCT_PACKAGES += \
+    fastbootd \
+    libhardware.recovery
+
 # Misc.
 PRODUCT_PACKAGES += \
     libnbaio_mono \

@@ -1,2 +1,5 @@
 ro.vendor.retro.name=2.5
 ro.rp2plus.ota.version=1.0.0.68
+
+# Fastbootd
+ro.fastbootd.available=true
