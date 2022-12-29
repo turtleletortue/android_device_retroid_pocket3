@@ -213,3 +213,6 @@ SELINUX_IGNORE_NEVERALLOWS := true
 # Ignore overriding commands errors
 BUILD_BROKEN_DUP_RULES := true
 
+# Metadata partition
+BOARD_USES_METADATA_PARTITION := true
+
