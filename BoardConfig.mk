@@ -33,6 +33,20 @@ BOARD_KERNEL_IMAGE_NAME := Image
 # Prebuilt 2plus kernel
 TARGET_PREBUILT_KERNEL := device/retroid/pocket2plus/prebuilt/kernel
 
+# AB
+AB_OTA_UPDATER := true
+AB_OTA_PARTITIONS += \
+    boot \
+    system \
+    system_ext \
+    product \
+    vendor \
+    vbmeta \
+    vbmeta_system \
+    vbmeta_system_ext \
+    vbmeta_product \
+    vbmeta_vendor \
+
 # Recovery as boot
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
 BOARD_USES_RECOVERY_AS_BOOT := true
