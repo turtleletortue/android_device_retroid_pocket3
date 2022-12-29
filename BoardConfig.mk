@@ -27,15 +27,11 @@ TARGET_BOARD_PLATFORM := ums312
 
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
-TARGET_KERNEL_SOURCE := kernel/retroid/pocket2plus
-TARGET_KERNEL_CONFIG := pocket2plus_defconfig
+#TARGET_KERNEL_SOURCE := kernel/retroid/pocket2plus
+#TARGET_KERNEL_CONFIG := pocket2plus_defconfig
 BOARD_KERNEL_IMAGE_NAME := Image
 # Prebuilt 2plus kernel
-#TARGET_PREBUILT_KERNEL := device/retroid/pocket2plus/prebuilt/kernel
-# Prebuilt 2plus dtbo
-BOARD_PREBUILT_DTBOIMAGE := device/retroid/pocket2plus/prebuilt/dtbo
-# Include the prebuilt recovery dtbo
-BOARD_INCLUDE_RECOVERY_DTBO := true
+TARGET_PREBUILT_KERNEL := device/retroid/pocket2plus/prebuilt/kernel
 
 # Recovery as boot
 BOARD_BOOTIMAGE_PARTITION_SIZE := 36700160
