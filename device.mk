@@ -22,6 +22,9 @@ include $(LOCAL_PATH)/hidl.mk
 # Fix symlinks
 $(call inherit-product, $(LOCAL_PATH)/fixsymlinks/fixsymlinks.mk)
 
+# Device uses dynamic partitions (super partition)
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
+
 # Device .rc files
 PRODUCT_PACKAGES += \
     init.ram.rc \
