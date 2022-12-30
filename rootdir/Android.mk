@@ -66,8 +66,9 @@ LOCAL_MODULE_STEM  := fstab.ums312_2h10
 LOCAL_MODULE_TAGS  := optional
 LOCAL_MODULE_CLASS := ETC
 LOCAL_SRC_FILES    := $(LOCAL_MODULE_STEM)
-LOCAL_MODULE_PATH  := $(TARGET_RAMDISK_OUT)/first_stage_ramdisk
+LOCAL_MODULE_PATH  := $(TARGET_RECOVERY_ROOT_OUT)/first_stage_ramdisk
 include $(BUILD_PREBUILT)
+
 include $(CLEAR_VARS)
 LOCAL_MODULE       := fstab.enableswap
 LOCAL_MODULE_TAGS  := optional

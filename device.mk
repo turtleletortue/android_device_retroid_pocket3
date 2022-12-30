@@ -126,8 +126,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/ueventd.ums312_2h10.rc:root/ueventd.ums312_2h10.rc \
     $(LOCAL_PATH)/recovery/init.recovery.ums312_2h10.rc:root/init.recovery.ums312_2h10.rc \
-    $(LOCAL_PATH)/rootdir/fstab.ums312_2h10:root/fstab.ums312_2h10 \
-    $(LOCAL_PATH)/rootdir/fstab.ums312_2h10:root/first_stage_ramdisk/fstab.ums312_2h10 \
+    $(LOCAL_PATH)/rootdir/fstab.ums312_2h10:root/fstab.ums312_2h10 
 
 # Vendor default.prop
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
