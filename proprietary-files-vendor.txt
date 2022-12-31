@@ -786,7 +786,13 @@ vendor/etc/bluetooth_audio_policy_configuration.xml
 vendor/etc/bluetooth_audio_policy_configuration_disable_offload.xml
 vendor/etc/default_volume_tables.xml
 
-# paramter-framework
+# Bluetooth configs
+vendor/etc/bt_configure_pskey.ini
+vendor/etc/bt_configure_pskey_aa.ini
+vendor/etc/bt_configure_rf.ini
+vendor/etc/bt_configure_rf_aa.ini
+
+# parameter-framework
 vendor/etc/parameter-framework/Settings/Policy/PolicyConfigurableDomains.xml
 vendor/etc/parameter-framework/Structure/Policy/PolicyClass.xml
 vendor/etc/parameter-framework/Structure/Policy/PolicySubsystem.xml
