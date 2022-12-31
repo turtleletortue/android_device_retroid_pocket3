@@ -7,8 +7,8 @@ on init
     write /config/usb_gadget/g1/idProduct 0x4EE7
     mkdir /config/usb_gadget/g1/strings/0x409 0770 shell shell
     write /config/usb_gadget/g1/strings/0x409/serialnumber ${ro.serialno}
-    write /config/usb_gadget/g1/strings/0x409/manufacturer "Unisoc"
-    write /config/usb_gadget/g1/strings/0x409/product "Unisoc Phone"
+    write /config/usb_gadget/g1/strings/0x409/manufacturer "Retroid"
+    write /config/usb_gadget/g1/strings/0x409/product "Retroid Pocket 2 Plus"
     mkdir /config/usb_gadget/g1/configs/b.1 0770 shell shell
     mkdir /config/usb_gadget/g1/configs/b.1/strings/0x409 0770 shell shell
     write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "Conf 1"
