@@ -829,6 +829,8 @@ vendor/lib64/libwifi-hal.so
 
 # Wifi config
 vendor/etc/wifi/wpa_supplicant.conf
+vendor/etc/wifi_board_config.ini
+vendor/etc/wifi_board_config_aa.ini
 
 # vendor/etc
 vendor/etc/enhance/abc.xml
