@@ -20,6 +20,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.3-service.clearkey
 
+# Gnss
+PRODUCT_PACKAGES += \
+    android.hardware.gnss@2.1-service
+
 # Graphics
 PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.1-service

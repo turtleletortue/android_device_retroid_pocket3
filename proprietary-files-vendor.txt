@@ -8,7 +8,7 @@ vendor/bin/hw/vendor.sprd.hardware.boot@1.1-service
 vendor/bin/hw/vendor.sprd.hardware.broadcastradio@2.0-service
 vendor/bin/hw/vendor.sprd.hardware.connmgr@1.0-service
 vendor/bin/hw/vendor.sprd.hardware.enhance@1.0-service
-vendor/bin/hw/vendor.sprd.hardware.gnss@2.1-service
+#vendor/bin/hw/vendor.sprd.hardware.gnss@2.1-service
 vendor/bin/hw/vendor.sprd.hardware.lights-service
 vendor/bin/hw/vendor.sprd.hardware.network@1.0-service
 #vendor/bin/hw/vendor.sprd.hardware.thermal@2.0-service
@@ -673,7 +673,7 @@ vendor/lib/modules/trace_runqlat_bytedancy.ko
 -vendor/etc/vintf/manifest/android.hardware.gatekeeper@1.0-service.trusty.xml
 -vendor/etc/vintf/manifest/android.hardware.keymaster@4.1-unisoc.service.xml
 -vendor/etc/vintf/manifest/vendor.sprd.hardware.boot@1.1.xml
--vendor/etc/vintf/manifest/vendor.sprd.hardware.gnss@2.1-service.xml
+#-vendor/etc/vintf/manifest/vendor.sprd.hardware.gnss@2.1-service.xml
 #-vendor/etc/vintf/manifest/vendor.sprd.hardware.thermal@2.0-service.xml
 -vendor/etc/vintf/manifest/android.hardware.sensors@1.0.xml
 #-vendor/etc/vintf/manifest/android.hardware.thermal@2.0-service.xml
@@ -733,7 +733,7 @@ vendor/etc/init/vendor.sprd.hardware.boot@1.1-service.rc
 vendor/etc/init/vendor.sprd.hardware.broadcastradio@2.0-service.rc
 vendor/etc/init/vendor.sprd.hardware.connmgr@1.0-service.rc
 vendor/etc/init/vendor.sprd.hardware.enhance@1.0-service.rc
-vendor/etc/init/vendor.sprd.hardware.gnss@2.1-service.rc
+#vendor/etc/init/vendor.sprd.hardware.gnss@2.1-service.rc
 vendor/etc/init/vendor.sprd.hardware.network@1.0-service.rc
 #vendor/etc/init/vendor.sprd.hardware.thermal@2.0-service.rc
 vendor/etc/init/vendor.sprd.hardware.wcn@1.0-service.rc
