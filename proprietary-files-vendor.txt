@@ -823,6 +823,9 @@ vendor/etc/thermal.conf
 
 # Power configs
 
+# Prebuilt libwifi-hal: necessary for WiFi to work
+vendor/lib/libwifi-hal.so
+vendor/lib64/libwifi-hal.so
 
 # Wifi config
 vendor/etc/wifi/wpa_supplicant.conf
