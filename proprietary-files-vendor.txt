@@ -786,6 +786,14 @@ vendor/etc/bluetooth_audio_policy_configuration.xml
 vendor/etc/bluetooth_audio_policy_configuration_disable_offload.xml
 vendor/etc/default_volume_tables.xml
 
+# paramter-framework
+vendor/etc/parameter-framework/Settings/Policy/PolicyConfigurableDomains.xml
+vendor/etc/parameter-framework/Structure/Policy/PolicyClass.xml
+vendor/etc/parameter-framework/Structure/Policy/PolicySubsystem.xml
+vendor/etc/parameter-framework/Structure/Policy/PolicySubsystem-CommonTypes.xml
+vendor/etc/parameter-framework/Structure/Policy/ProductStrategies.xml
+vendor/etc/parameter-framework/ParameterFrameworkConfigurationPolicy.xml
+
 # Codec configs
 vendor/etc/media_codecs.xml
 vendor/etc/media_codecs_c2.xml

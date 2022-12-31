@@ -78,3 +78,8 @@ system_ext/bin/srmi_proxyd
 system_ext/bin/tiny_firewall.sh
 system_ext/bin/wcn_check
 system_ext/bin/xrpclient
+
+# Audio policy
+lib/libpolicy-subsystem.so
+lib64/libpolicy-subsystem.so
+
