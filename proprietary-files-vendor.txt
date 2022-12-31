@@ -814,6 +814,10 @@ vendor/etc/primary_audio_policy_configuration_smart_pa.xml
 vendor/etc/r_submix_audio_policy_configuration.xml
 vendor/etc/usb_audio_policy_configuration.xml
 
+# FM configs
+vendor/etc/fm.conf
+vendor/etc/fm_board_config.ini
+
 # Thermal config
 vendor/etc/thermal.conf
 
