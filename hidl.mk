@@ -4,10 +4,6 @@ PRODUCT_PACKAGES += \
     android.hardware.audio.effect@6.0-impl \
     android.hardware.audio.service
 
-# Boot
-PRODUCT_PACKAGES += \
-    android.hardware.boot@1.1-service
-
 # Broadcastradio
 PRODUCT_PACKAGES += \
     android.hardware.broadcastradio@1.0-impl
