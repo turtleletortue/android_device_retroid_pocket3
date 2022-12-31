@@ -138,7 +138,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
     external_storage.casefold.enabled=1 \
     external_storage.sdcardfs.enabled=1 \
     persist.sys.vilte.socket=ap \
-    persist.vendor.sys.volte.enable=true \
-    service.wait_for_bootanim=1 \
     persist.vendor.nhmonitor=on \
     ro.rebootescrow.device=/dev/block/pmem0
