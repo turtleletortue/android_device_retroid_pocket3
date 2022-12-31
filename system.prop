@@ -3,3 +3,9 @@ ro.rp2plus.ota.version=1.0.0.68
 
 # Fastbootd
 ro.fastbootd.available=true
+
+ro.boot.product.vendor.sku=sprd
+persist.vendor.radio.mdrec.simpin.cache=0
+persist.sys.audio.source=true
+persist.sys.support.vt=true
+persist.sys.csvt=false

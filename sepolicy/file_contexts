@@ -1,4 +1,1 @@
 /system/bin/pservice		u:object_r:pservice_exec:s0
-
-# Root folders
-/productinfo(/.*)?          u:object_r:productinfo_file:s0

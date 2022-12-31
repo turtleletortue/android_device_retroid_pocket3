@@ -1,25 +1,80 @@
-# Pservice (Probably necessary for device controller to work)
+# pservice - necessary for controller to function
 bin/pservice
+etc/init/retropocket.rc
 
-# Keylayouts (Necessary for device controller to work)
-usr/keylayout/Vendor_2022_Product_0111.kl
+# Controller keylayouts
+usr/keylayout/Vendor_2020_Product_0111.kl
+usr/keylayout/Vendor_2022_Product_3001.kl
+usr/keylayout/Vendor_2022_Product_b001.kl
 
-# system/etc
-etc/audio_policy_criteria.conf
-etc/sprd_performance_config.xml
-
-# a2dp hal
-lib/hw/audio.a2dp.ums312.so
-lib64/hw/audio.a2dp.ums312.so
-
-# Libraries needed by a2dp hal
-lib/libsysoffloadstream.so
-lib64/libsysoffloadstream.so
-lib/libsystinyxml.so
-lib64/libsystinyxml.so
-lib/libsystinycompress.so
-lib64/libsystinycompress.so
-
-# Performance Manager
-bin/performancemanager
-etc/init/performancemanager.rc
+# System_ext
+system_ext/lib/libavatar.so
+system_ext/lib/libAVRTTManager.so
+system_ext/lib/libimsbrd.so
+system_ext/lib/liblemon.so
+system_ext/lib/libmme_jrtc.so
+system_ext/lib/libpowerhal_cli.so
+system_ext/lib/libsrmi.so
+system_ext/lib/libvdspservice.so
+system_ext/lib/libvideo_call_engine_jni.so
+system_ext/lib/libvolte_video_service_jni.so
+system_ext/lib/libyuv_jpeg_converter_jni.so
+system_ext/lib/vendor.sprd.hardware.gnss@2.1.so
+system_ext/lib/vendor.sprd.hardware.radio.ims@1.0.so
+system_ext/lib/vendor.sprd.hardware.radio.lite@1.0.so
+system_ext/lib/vendor.sprd.hardware.radio@1.0.so
+system_ext/lib/vendor.sprd.hardware.thermal@2.0.so
+system_ext/lib/vendor.sprd.hardware.vdsp@1.0.so
+system_ext/lib/vendor.unisoc.hardware.power-V1-ndk_platform.so
+system_ext/lib64/libavatar.so
+system_ext/lib64/libAVRTTManager.so
+system_ext/lib64/libDehaze.so
+system_ext/lib64/libfbextraction.so
+system_ext/lib64/libimageblend.so
+system_ext/lib64/libimsbrd.so
+system_ext/lib64/libInpaintLite.so
+system_ext/lib64/libjni_sprd_blur.so
+system_ext/lib64/libjni_sprd_dehaze.so
+system_ext/lib64/libjni_sprd_fa.so
+system_ext/lib64/libjni_sprd_facedetector.so
+system_ext/lib64/libjni_sprd_fd.so
+system_ext/lib64/libjni_sprd_fv.so
+system_ext/lib64/libjni_sprd_imageblendings.so
+system_ext/lib64/libjni_sprd_portrait_scene.so
+system_ext/lib64/libjni_sprd_real_bokeh.so
+system_ext/lib64/libjni_sprd_smarterase.so
+system_ext/lib64/liblemon.so
+system_ext/lib64/libmme_jrtc.so
+system_ext/lib64/libpowerhal_cli.so
+system_ext/lib64/libsprdjni_eglfence2.so
+system_ext/lib64/libsprdjni_filtershow_filters2.so
+system_ext/lib64/libsprdjni_jpeg.so
+system_ext/lib64/libsprdjni_jpegstream2.so
+system_ext/lib64/libsprdsr.so
+system_ext/lib64/libsrmi.so
+system_ext/lib64/libvdspservice.so
+system_ext/lib64/libvideo_call_engine_jni.so
+system_ext/lib64/libvolte_video_service_jni.so
+system_ext/lib64/libyuv_jpeg_converter_jni.so
+system_ext/lib64/vendor.sprd.hardware.gnss@2.1.so
+system_ext/lib64/vendor.sprd.hardware.radio.ims@1.0.so
+system_ext/lib64/vendor.sprd.hardware.radio.lite@1.0.so
+system_ext/lib64/vendor.sprd.hardware.radio@1.0.so
+system_ext/lib64/vendor.sprd.hardware.thermal@2.0.so
+system_ext/lib64/vendor.sprd.hardware.vdsp@1.0.so
+system_ext/lib64/vendor.unisoc.hardware.power-V1-ndk_platform.so
+system_ext/bin/dataLogDaemon
+system_ext/bin/data_rps.sh
+system_ext/bin/ext_data
+system_ext/bin/fm_tools
+system_ext/bin/hcidump
+system_ext/bin/ims_bridged
+system_ext/bin/ip_monitor.sh
+system_ext/bin/ju_ipsec_server
+system_ext/bin/minidumpd
+system_ext/bin/netbox.sh
+system_ext/bin/sprd_networkcontrol
+system_ext/bin/srmi_proxyd
+system_ext/bin/tiny_firewall.sh
+system_ext/bin/wcn_check
+system_ext/bin/xrpclient

@@ -10,6 +10,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # Virtual A/B OTA
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
+# APEX
+$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
+
 # Vendor
 $(call inherit-product-if-exists, vendor/retroid/pocket2plus/pocket2plus-vendor.mk)
 
@@ -36,7 +39,8 @@ PRODUCT_PACKAGES += \
 # Device fstabs
 PRODUCT_PACKAGES += \
     fstab.ums312_2h10 \
-    fstab.enableswap
+    fstab.enableswap \
+    fstab.postinstall
 
 # Vendor Prop
 include $(LOCAL_PATH)/vendor_prop.mk
@@ -50,7 +54,12 @@ PRODUCT_PACKAGES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
+    audio.bluetooth.default \
     libbt-vendor
+
+# Bootctrl
+PRODUCT_PACKAGES += \
+    bootctrl.default
 
 # Wifi
 PRODUCT_PACKAGES += \
@@ -79,13 +88,28 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     gps.default
 
+# Rild
+PRODUCT_PACKAGES += \
+    rild
+
 # Thermal
 PRODUCT_PACKAGES += \
     thermal.default
 
+# Update Engine
+PRODUCT_PACKAGES += \
+    update_engine \
+    update_engine_sideload \
+    update_verifier
+
 # Pservice **NEEDS** these
 PRODUCT_PACKAGES += \
     libstdc++.vendor 
+
+# HIDL
+PRODUCT_PACKAGES += \
+    libhidltransport \
+    libbinderwrapper
 
 # Seccomp
 PRODUCT_COPY_FILES += \
@@ -126,13 +150,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/ueventd.ums312_2h10.rc:root/ueventd.ums312_2h10.rc \
     $(LOCAL_PATH)/recovery/init.recovery.ums312_2h10.rc:root/init.recovery.ums312_2h10.rc \
-    $(LOCAL_PATH)/rootdir/fstab.ums312_2h10:root/fstab.ums312_2h10 
+    #$(LOCAL_PATH)/rootdir/fstab.ums312_2h10:root/fstab.ums312_2h10 
 
 # Vendor default.prop
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp,adb \
     camera.disable_zsl_mode=1 \
     sys.usb.controller=musb-hdrc.0.auto \
+    persist.vendor.sys.modem.diag=disable
 
 # t310 Surfaceflinger props
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
@@ -164,10 +189,4 @@ PRODUCT_PACKAGES += \
 
 # Tablet characteristics
 PRODUCT_CHARACTERISTICS := tablet
-    
-# VNDK
-PRODUCT_COPY_FILES += \
-    prebuilts/vndk/v28/arm64/arch-arm-armv8-a/shared/vndk-core/libui.so:$(TARGET_COPY_OUT_VENDOR)/lib/libui-v28.so \
-    prebuilts/vndk/v28/arm64/arch-arm64-armv8-a/shared/vndk-core/libui.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libui-v28.so \
-    prebuilts/vndk/v28/arm64/arch-arm-armv8-a/shared/vndk-core/android.hardware.audio.common@4.0-util.so:$(TARGET_COPY_OUT_VENDOR)/lib/android.hardware.audio.common@4.0-util-v28.so \
-    prebuilts/vndk/v28/arm64/arch-arm64-armv8-a/shared/vndk-core/android.hardware.audio.common@4.0-util.so:$(TARGET_COPY_OUT_VENDOR)/lib64/android.hardware.audio.common@4.0-util-v28.so \
+

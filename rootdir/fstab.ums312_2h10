@@ -7,7 +7,7 @@ system /system ext4 ro,barrier=1 wait,logical,first_stage_mount,slotselect
 system_ext /system_ext ext4 ro,barrier=1 wait,logical,first_stage_mount,slotselect
 vendor /vendor ext4 ro,barrier=1 wait,logical,first_stage_mount,slotselect
 product /product ext4 ro,barrier=1 wait,logical,first_stage_mount,slotselect
-/dev/block/by-name/userdata /data        f2fs noatime,nosuid,nodev,discard,inline_xattr,inline_data,inlinecrypt,fsync_mode=nobarrier latemount,wait,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption,check,reservedsize=128M,checkpoint=fs,formattable
+/dev/block/by-name/userdata /data        f2fs noatime,nosuid,nodev,discard,inline_xattr,inline_data wait,check,reservedsize=128M,quota
 /dev/block/by-name/metadata /metadata    ext4 nodev,noatime,nosuid,errors=panic wait,formattable,first_stage_mount,check
 /devices/platform/soc/soc:aon/5fff0000.usb/musb-hdrc.*.auto/usb*      auto         vfat defaults voldmanaged=usbdisk:auto
 /devices/platform/soc/soc:ap-apb/71100000.sdio/mmc_host/mmc1/mmc1:*/block/mmcblk1      auto         vfat defaults voldmanaged=sdcard0:auto,noemulatedsd,encryptable=footer
