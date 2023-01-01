@@ -1,2 +1,0 @@
-#ZRAM
-/dev/block/zram0       none         swap    defaults    zramsize=62%,zram_loopback_path=/data/per_boot/zram_swap,zram_backingdev_size=150M,zram_backing_dev_path=/dev/block/loop0
