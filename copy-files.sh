@@ -7,7 +7,7 @@ exit
 fi
 
 VENDOR=retroid
-DEVICE=pocket2plus
+DEVICE=pocket3
 
 BASE=../../../vendor/$VENDOR/$DEVICE/proprietary
 

@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <device name="Android">
-  <item name="battery.capacity">4000</item>
+  <item name="battery.capacity">4500</item>
 </device>

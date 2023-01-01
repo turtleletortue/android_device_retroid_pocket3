@@ -1,10 +1,10 @@
-DEVICE_PATH := device/retroid/pocket2plus
+DEVICE_PATH := device/retroid/pocket3
 
 # Inherit from t310-common
 include device/retroid/t310-common/BoardConfigCommon.mk
 
 # Prebuilt 2plus kernel
-TARGET_PREBUILT_KERNEL := device/retroid/pocket2plus/prebuilt/kernel
+TARGET_PREBUILT_KERNEL := device/retroid/pocket3/prebuilt/kernel
 
 # Kernel and recoveryimage generation
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
@@ -20,13 +20,13 @@ BOARD_MKBOOTIMG_ARGS += --cmdline "console=ttyS1,115200n8 buildvariant=user andr
 BOARD_MKBOOTIMG_ARGS += --dtb $(PRODUCT_OUT)/dtb.img
 
 # Recovery fstab
-TARGET_RECOVERY_FSTAB := device/retroid/pocket2plus/recovery/recovery.fstab
+TARGET_RECOVERY_FSTAB := device/retroid/pocket3/recovery/recovery.fstab
 BOARD_SUPPRESS_EMMC_WIPE := true
 
 # Bootanimation generation
-TARGET_SCREEN_HEIGHT := 480
-TARGET_SCREEN_WIDTH := 640
+TARGET_SCREEN_HEIGHT := 750
+TARGET_SCREEN_WIDTH := 1334
 
 # System prop
-TARGET_SYSTEM_PROP += device/retroid/pocket2plus/system.prop
+TARGET_SYSTEM_PROP += device/retroid/pocket3/system.prop
 

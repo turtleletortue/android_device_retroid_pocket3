@@ -1,1 +1,1 @@
-$(shell ./device/retroid/pocket2plus/fixsymlinks/generatesymlinks.sh)
+$(shell ./device/retroid/pocket3/fixsymlinks/generatesymlinks.sh)

@@ -4,7 +4,6 @@ etc/init/retropocket.rc
 
 # Controller keylayouts
 usr/keylayout/Vendor_2020_Product_0111.kl
-usr/keylayout/Vendor_2022_Product_3001.kl
 usr/keylayout/Vendor_2022_Product_b001.kl
 
 # System_ext

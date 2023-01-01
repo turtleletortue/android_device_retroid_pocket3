@@ -3,7 +3,7 @@
 
 set -e
 
-DEVICE=pocket2plus
+DEVICE=pocket3
 VENDOR=retroid
 
 # Load extractutils and do some sanity checks

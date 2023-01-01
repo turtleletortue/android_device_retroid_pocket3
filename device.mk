@@ -2,10 +2,10 @@
 $(call inherit-product, device/retroid/t310-common/t310.mk)
 
 # Vendor
-$(call inherit-product-if-exists, vendor/retroid/pocket2plus/pocket2plus-vendor.mk)
+$(call inherit-product-if-exists, vendor/retroid/pocket3/pocket3-vendor.mk)
 
 # Vendor apps
-$(call inherit-product-if-exists, vendor/retroid/apps/pocket2plus-apps.mk)
+$(call inherit-product-if-exists, vendor/retroid/apps/pocket3-apps.mk)
 
 # Fix symlinks
 $(call inherit-product, $(LOCAL_PATH)/fixsymlinks/fixsymlinks.mk)
