@@ -4,7 +4,7 @@ vendor/bin/hw/android.hardware.gatekeeper@1.0-service.trusty
 vendor/bin/hw/android.hardware.graphics.allocator@4.0-service
 vendor/bin/hw/android.hardware.keymaster@4.1-unisoc.service
 vendor/bin/hw/android.hardware.usb@1.1-service
-vendor/bin/hw/vendor.sprd.hardware.boot@1.1-service
+#vendor/bin/hw/vendor.sprd.hardware.boot@1.1-service
 vendor/bin/hw/vendor.sprd.hardware.broadcastradio@2.0-service
 vendor/bin/hw/vendor.sprd.hardware.connmgr@1.0-service
 vendor/bin/hw/vendor.sprd.hardware.enhance@1.0-service
@@ -40,7 +40,7 @@ vendor/lib/hw/hwcomposer.ums312.so
 vendor/lib/hw/memtrack.ums312.so
 vendor/lib/hw/sensors.ums312.so
 vendor/lib/hw/unisoc.bootctrl.so
-vendor/lib/hw/vendor.sprd.hardware.boot@1.1-impl.so
+#vendor/lib/hw/vendor.sprd.hardware.boot@1.1-impl.so
 vendor/lib/hw/vendor.sprd.hardware.connmgr@1.0-impl.so
 vendor/lib/hw/vendor.sprd.hardware.enhance@1.0-impl.so
 vendor/lib/hw/vendor.sprd.hardware.gnss@2.1-impl.so
@@ -63,7 +63,7 @@ vendor/lib64/hw/hwcomposer.ums312.so
 vendor/lib64/hw/memtrack.ums312.so
 vendor/lib64/hw/sensors.ums312.so
 vendor/lib64/hw/unisoc.bootctrl.so
-vendor/lib64/hw/vendor.sprd.hardware.boot@1.1-impl.so
+#vendor/lib64/hw/vendor.sprd.hardware.boot@1.1-impl.so
 vendor/lib64/hw/vendor.sprd.hardware.connmgr@1.0-impl.so
 vendor/lib64/hw/vendor.sprd.hardware.enhance@1.0-impl.so
 vendor/lib64/hw/vendor.sprd.hardware.gnss@2.1-impl.so
@@ -368,7 +368,7 @@ vendor/lib/libWhite_point_shift.so
 vendor/lib/libXMPCore.so
 vendor/lib/libXMPFiles.so
 vendor/lib/libyuv420_scaler.so
-vendor/lib/vendor.sprd.hardware.boot@1.1.so
+#vendor/lib/vendor.sprd.hardware.boot@1.1.so
 vendor/lib/vendor.sprd.hardware.connmgr@1.0.so
 vendor/lib/vendor.sprd.hardware.enhance@1.0.so
 vendor/lib/vendor.sprd.hardware.gnss@2.1.so
@@ -613,7 +613,7 @@ vendor/lib64/libXMPCore.so
 vendor/lib64/libXMPFiles.so
 vendor/lib64/libyuv420_scaler.so
 vendor/lib64/power.sprd.so
-vendor/lib64/vendor.sprd.hardware.boot@1.1.so
+#vendor/lib64/vendor.sprd.hardware.boot@1.1.so
 vendor/lib64/vendor.sprd.hardware.connmgr@1.0.so
 vendor/lib64/vendor.sprd.hardware.enhance@1.0.so
 vendor/lib64/vendor.sprd.hardware.gnss@2.1.so
@@ -677,7 +677,7 @@ vendor/lib/modules/trace_runqlat_bytedancy.ko
 # Vintf fragments
 -vendor/etc/vintf/manifest/android.hardware.gatekeeper@1.0-service.trusty.xml
 -vendor/etc/vintf/manifest/android.hardware.keymaster@4.1-unisoc.service.xml
--vendor/etc/vintf/manifest/vendor.sprd.hardware.boot@1.1.xml
+#-vendor/etc/vintf/manifest/vendor.sprd.hardware.boot@1.1.xml
 #-vendor/etc/vintf/manifest/vendor.sprd.hardware.gnss@2.1-service.xml
 #-vendor/etc/vintf/manifest/vendor.sprd.hardware.thermal@2.0-service.xml
 -vendor/etc/vintf/manifest/android.hardware.sensors@1.0.xml
@@ -735,7 +735,7 @@ vendor/etc/init/storageproxyd_androidr.rc
 vendor/etc/init/systemDebuggerd.rc
 vendor/etc/init/thermald.rc
 vendor/etc/init/tsupplicant.rc
-vendor/etc/init/vendor.sprd.hardware.boot@1.1-service.rc
+#vendor/etc/init/vendor.sprd.hardware.boot@1.1-service.rc
 vendor/etc/init/vendor.sprd.hardware.broadcastradio@2.0-service.rc
 vendor/etc/init/vendor.sprd.hardware.connmgr@1.0-service.rc
 vendor/etc/init/vendor.sprd.hardware.enhance@1.0-service.rc
