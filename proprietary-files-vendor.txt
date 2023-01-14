@@ -107,6 +107,11 @@ vendor/lib/npidevice/libtsensor.so
 vendor/lib/npidevice/libtsxrawdata.so
 vendor/lib/npidevice/libwifieut_m3.so
 vendor/lib/npidevice/PQTune.ums312.so
+vendor/lib64/npidevice/libcheckkeybox.so
+vendor/lib64/npidevice/libFactoryRadioTest.so
+vendor/lib64/npidevice/libgetuid.so
+vendor/lib64/npidevice/liblcdnpi.so
+vendor/lib64/npidevice/PQTune.ums312.so
 
 # Vendor libraries
 vendor/lib/android.hardware.audio.common@5.0-util.so
@@ -700,6 +705,7 @@ vendor/firmware/vdsp_firmware.bin
 
 # Init rcs
 vendor/etc/init/android.hardware.bluetooth@1.1-service.unisoc.rc
+vendor/etc/init/android.hardware.gatekeeper@1.0-service.trusty.rc
 vendor/etc/init/android.hardware.graphics.allocator@4.0-service.img.rc
 vendor/etc/init/android.hardware.keymaster@4.1-unisoc.service.rc
 vendor/etc/init/android.hardware.usb@1.1-service.rc
