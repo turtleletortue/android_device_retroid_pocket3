@@ -182,9 +182,9 @@ vendor/lib/libflash.so
 vendor/lib/libglslcompiler.so
 vendor/lib/libgyrostab.so
 vendor/lib/libhdr.so
-vendor/lib/libhidltransport.so
-vendor/lib/libhwbinder.so
-vendor/lib/libhwc2on1adapter.so
+#vendor/lib/libhidltransport.so
+#vendor/lib/libhwbinder.so
+#vendor/lib/libhwc2on1adapter.so
 vendor/lib/libIMGegl.so
 vendor/lib/libimpl-ril.so
 vendor/lib/libinfo.so
@@ -441,8 +441,8 @@ vendor/lib64/libflash.so
 vendor/lib64/libglslcompiler.so
 vendor/lib64/libgyrostab.so
 vendor/lib64/libhdr.so
-vendor/lib64/libhidltransport.so
-vendor/lib64/libhwbinder.so
+#vendor/lib64/libhidltransport.so
+#vendor/lib64/libhwbinder.so
 vendor/lib64/libIMGegl.so
 vendor/lib64/libimpl-ril.so
 vendor/lib64/libinfo.so
