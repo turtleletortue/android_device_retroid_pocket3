@@ -452,12 +452,12 @@ vendor/lib64/libiwnpi.so
 vendor/lib64/libjpegenc_sw_sprd.so
 vendor/lib64/libjpeg_hw_sprd.so
 vendor/lib64/libkernelbootcp.trusty.so
-vendor/lib64/libkeymaster41.so
-vendor/lib64/libkeymaster4_1support.so
-vendor/lib64/libkeymaster4.so
-vendor/lib64/libkeymaster4support.so
-vendor/lib64/libkeymaster_messages.so
-vendor/lib64/libkeymaster_portable.so
+#vendor/lib64/libkeymaster41.so
+#vendor/lib64/libkeymaster4_1support.so
+#vendor/lib64/libkeymaster4.so
+#vendor/lib64/libkeymaster4support.so
+#vendor/lib64/libkeymaster_messages.so
+#vendor/lib64/libkeymaster_portable.so
 vendor/lib64/libkey.so
 vendor/lib64/liblightportrait.so
 vendor/lib64/liblowi_wifihal.so
@@ -488,7 +488,7 @@ vendor/lib64/libparam_ov12a10.so
 vendor/lib64/libparam_ov5675_dual.so
 vendor/lib64/libparam_ov8856_shine.so
 vendor/lib64/libpowerhal_cli.so
-vendor/lib64/libpuresoftkeymasterdevice.so
+#vendor/lib64/libpuresoftkeymasterdevice.so
 vendor/lib64/libPVRRS.so
 vendor/lib64/libPVRScopeServices.so
 vendor/lib64/librilcore.so
