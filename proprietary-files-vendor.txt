@@ -256,7 +256,7 @@ vendor/lib/libsensor_imx363.so
 vendor/lib/libsensor_imx586.so
 vendor/lib/libsensor_imx616.so
 vendor/lib/libsensorlistcfg.so
-vendor/lib/libsensorndkbridge.so
+#vendor/lib/libsensorndkbridge.so
 vendor/lib/libsensornpi.so
 vendor/lib/libsensor_ov02a10.so
 vendor/lib/libsensor_ov08a10.so
@@ -517,7 +517,7 @@ vendor/lib64/libsensor_imx363.so
 vendor/lib64/libsensor_imx586.so
 vendor/lib64/libsensor_imx616.so
 vendor/lib64/libsensorlistcfg.so
-vendor/lib64/libsensorndkbridge.so
+#vendor/lib64/libsensorndkbridge.so
 vendor/lib64/libsensornpi.so
 vendor/lib64/libsensor_ov02a10.so
 vendor/lib64/libsensor_ov08a10.so
