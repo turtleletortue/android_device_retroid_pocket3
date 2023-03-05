@@ -348,7 +348,7 @@ vendor/lib/libTfliteWrapper.so
 vendor/lib/libtinycompress_util.so
 vendor/lib/libtqvalidate.so
 vendor/lib/libtracedump.so
-vendor/lib/libtrusty.so
+#vendor/lib/libtrusty.so
 vendor/lib/libufwriter.so
 vendor/lib/libumnn.so
 vendor/lib/libunisocpreprocessing.so
