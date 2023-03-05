@@ -2,7 +2,7 @@
 vendor/bin/hw/android.hardware.bluetooth@1.1-service.unisoc
 vendor/bin/hw/android.hardware.gatekeeper@1.0-service.trusty
 vendor/bin/hw/android.hardware.graphics.allocator@4.0-service
-vendor/bin/hw/android.hardware.keymaster@4.1-unisoc.service
+#vendor/bin/hw/android.hardware.keymaster@4.1-unisoc.service
 vendor/bin/hw/android.hardware.usb@1.1-service
 #vendor/bin/hw/vendor.sprd.hardware.boot@1.1-service
 vendor/bin/hw/vendor.sprd.hardware.broadcastradio@2.0-service
@@ -676,7 +676,7 @@ vendor/lib/modules/trace_runqlat_bytedancy.ko
 
 # Vintf fragments
 -vendor/etc/vintf/manifest/android.hardware.gatekeeper@1.0-service.trusty.xml
--vendor/etc/vintf/manifest/android.hardware.keymaster@4.1-unisoc.service.xml
+#-vendor/etc/vintf/manifest/android.hardware.keymaster@4.1-unisoc.service.xml
 #-vendor/etc/vintf/manifest/vendor.sprd.hardware.boot@1.1.xml
 #-vendor/etc/vintf/manifest/vendor.sprd.hardware.gnss@2.1-service.xml
 #-vendor/etc/vintf/manifest/vendor.sprd.hardware.thermal@2.0-service.xml
@@ -707,7 +707,7 @@ vendor/firmware/vdsp_firmware.bin
 vendor/etc/init/android.hardware.bluetooth@1.1-service.unisoc.rc
 vendor/etc/init/android.hardware.gatekeeper@1.0-service.trusty.rc
 vendor/etc/init/android.hardware.graphics.allocator@4.0-service.img.rc
-vendor/etc/init/android.hardware.keymaster@4.1-unisoc.service.rc
+#vendor/etc/init/android.hardware.keymaster@4.1-unisoc.service.rc
 vendor/etc/init/android.hardware.usb@1.1-service.rc
 vendor/etc/init/android.hardware.wifi.supplicant-service.rc
 vendor/etc/init/autotest.rc
