@@ -132,7 +132,7 @@ vendor/lib/libalsc.so
 vendor/lib/libatci.so
 vendor/lib/libatm.so
 vendor/lib/libaudiodump.so
-vendor/lib/libaudiofoundation.so
+#vendor/lib/libaudiofoundation.so
 vendor/lib/libaudionpi.so
 vendor/lib/libavcodec-58.so
 vendor/lib/libavutil-56.so
@@ -396,7 +396,7 @@ vendor/lib64/libae.so
 vendor/lib64/libalsc.so
 vendor/lib64/libatci.so
 vendor/lib64/libatm.so
-vendor/lib64/libaudiofoundation.so
+#vendor/lib64/libaudiofoundation.so
 vendor/lib64/libaudionpi.so
 vendor/lib64/libawb1.so
 vendor/lib64/libawb.so
