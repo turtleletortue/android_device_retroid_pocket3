@@ -44,6 +44,7 @@ function blob_fixup() {
     case "${1}" in
         vendor/bin/hw/vendor.unisoc.hardware.power-service)
             "${PATCHELF}" --replace-needed "libbinder.so" "libbinder-v30.so" "${2}"
+            "${PATCHELF}" --replace-needed "libcutils.so" "libcutils-v30.so" "${2}"
             ;;
     esac
 }
