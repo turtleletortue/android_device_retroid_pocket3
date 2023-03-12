@@ -743,7 +743,6 @@ vendor/etc/init/vendor.sprd.hardware.enhance@1.0-service.rc
 vendor/etc/init/vendor.sprd.hardware.network@1.0-service.rc
 #vendor/etc/init/vendor.sprd.hardware.thermal@2.0-service.rc
 vendor/etc/init/vendor.sprd.hardware.wcn@1.0-service.rc
-vendor/etc/init/vendor_flash_recovery.rc
 vendor/etc/init/vendor-power-default.rc
 vendor/etc/init/vibrator.rc
 vendor/etc/init/wcn.rc
