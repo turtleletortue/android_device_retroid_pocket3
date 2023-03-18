@@ -23,6 +23,9 @@ BOARD_MKBOOTIMG_ARGS += --dtb $(PRODUCT_OUT)/dtb.img
 TARGET_RECOVERY_FSTAB := device/retroid/pocket3/recovery/recovery.fstab
 BOARD_SUPPRESS_EMMC_WIPE := true
 
+# Bootanimation rotated for pocket3 screen
+TARGET_BOOTANIMATION := device/retroid/pocket3/bootanimation/bootanimation-rotated.zip
+
 # Bootanimation generation
 TARGET_SCREEN_HEIGHT := 750
 TARGET_SCREEN_WIDTH := 1334
