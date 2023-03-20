@@ -749,6 +749,9 @@ vendor/etc/init/vibrator.rc
 vendor/etc/init/wcn.rc
 vendor/etc/init/yloglite.rc
 
+# Audiofx libraries
+vendor/lib/soundfx/libsprdvoiceprocessing.so
+
 # Audio configs
 vendor/etc/audio/sku_sprd/a2dp_audio_policy_configuration.xml
 vendor/etc/audio/sku_sprd/audio_policy_configuration.xml
