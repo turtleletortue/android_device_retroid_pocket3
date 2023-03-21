@@ -750,6 +750,7 @@ vendor/etc/init/wcn.rc
 vendor/etc/init/yloglite.rc
 
 # Audiofx libraries
+vendor/lib/soundfx/libbundlewrapper2.so
 vendor/lib/soundfx/libsprdvoiceprocessing.so
 
 # Audio configs
