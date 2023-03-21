@@ -754,19 +754,6 @@ vendor/lib/soundfx/libbundlewrapper2.so
 vendor/lib/soundfx/libsprdvoiceprocessing.so
 
 # Audio configs
-vendor/etc/audio/sku_sprd/a2dp_audio_policy_configuration.xml
-vendor/etc/audio/sku_sprd/audio_policy_configuration.xml
-vendor/etc/audio/sku_sprd/audio_policy_configuration_a2dp_offload_disabled.xml
-vendor/etc/audio/sku_sprd/audio_policy_configuration_bluetooth_legacy_hal.xml
-vendor/etc/audio/sku_sprd/audio_policy_configuration_smart_pa.xml
-vendor/etc/audio/sku_sprd/audio_policy_volumes.xml
-vendor/etc/audio/sku_sprd/bluetooth_audio_policy_configuration.xml
-vendor/etc/audio/sku_sprd/bluetooth_audio_policy_configuration_disable_offload.xml
-vendor/etc/audio/sku_sprd/default_volume_tables.xml
-vendor/etc/audio/sku_sprd/primary_audio_policy_configuration.xml
-vendor/etc/audio/sku_sprd/primary_audio_policy_configuration_smart_pa.xml
-vendor/etc/audio/sku_sprd/r_submix_audio_policy_configuration.xml
-vendor/etc/audio/sku_sprd/usb_audio_policy_configuration.xml
 vendor/etc/audio_params/sprd/audioparam_config.xml
 vendor/etc/audio_params/sprd/audio_pga.xml
 vendor/etc/audio_params/sprd/audio_process.xml
@@ -774,27 +761,18 @@ vendor/etc/audio_params/sprd/audio_structure.xml
 vendor/etc/audio_params/sprd/codec.xml
 vendor/etc/audio_params/sprd/cvs.xml
 vendor/etc/audio_params/sprd/dsp_vbc.xml
-vendor/etc/a2dp_audio_policy_configuration.xml
 vendor/etc/audio_config.xml
 vendor/etc/audio_effects.conf
 vendor/etc/audio_effects.xml
 vendor/etc/audio_pcm.xml
-vendor/etc/audio_policy_configuration.xml
-vendor/etc/audio_policy_configuration_a2dp_offload_disabled.xml
-vendor/etc/audio_policy_configuration_bluetooth_legacy_hal.xml
-vendor/etc/audio_policy_configuration_smart_pa.xml
 vendor/etc/audio_policy_engine_configuration.xml
 vendor/etc/audio_policy_engine_criteria.xml
 vendor/etc/audio_policy_engine_criterion_types.xml
 vendor/etc/audio_policy_engine_default_stream_volumes.xml
 vendor/etc/audio_policy_engine_product_strategies.xml
 vendor/etc/audio_policy_engine_stream_volumes.xml
-vendor/etc/audio_policy_volumes.xml
 vendor/etc/audio_route.xml
 vendor/etc/BBAT.conf
-vendor/etc/bluetooth_audio_policy_configuration.xml
-vendor/etc/bluetooth_audio_policy_configuration_disable_offload.xml
-vendor/etc/default_volume_tables.xml
 
 # Bluetooth configs
 vendor/etc/bt_configure_pskey.ini
@@ -819,10 +797,6 @@ vendor/etc/media_codecs_performance.xml
 vendor/etc/media_codecs_performance_c2.xml
 vendor/etc/media_profiles_turnkey.xml
 vendor/etc/media_profiles_V1_0.xml
-vendor/etc/primary_audio_policy_configuration.xml
-vendor/etc/primary_audio_policy_configuration_smart_pa.xml
-vendor/etc/r_submix_audio_policy_configuration.xml
-vendor/etc/usb_audio_policy_configuration.xml
 
 # FM configs
 vendor/etc/fm.conf
