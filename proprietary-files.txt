@@ -1,6 +1,5 @@
 # pservice - necessary for controller to function
 bin/pservice
-etc/init/retropocket.rc
 
 # Controller keylayouts
 usr/keylayout/Vendor_2020_Product_0111.kl
