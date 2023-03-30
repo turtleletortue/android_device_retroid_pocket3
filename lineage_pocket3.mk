@@ -11,7 +11,3 @@ PRODUCT_MANUFACTURER := retroid
 PRODUCT_MODEL := Retroid Pocket 3
 PRODUCT_NAME := lineage_pocket3
 PRODUCT_RELEASE_NAME := RetroidPocket3
-
-# Lineage Overlay
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay/lineage
-
