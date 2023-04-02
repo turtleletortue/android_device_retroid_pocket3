@@ -30,6 +30,9 @@ TARGET_BOOTANIMATION := device/retroid/pocket3/bootanimation/bootanimation-rotat
 TARGET_SCREEN_HEIGHT := 750
 TARGET_SCREEN_WIDTH := 1334
 
+# Display
+TARGET_SCREEN_DENSITY := 266
+
 # System prop
 TARGET_SYSTEM_PROP += device/retroid/pocket3/system.prop
 
