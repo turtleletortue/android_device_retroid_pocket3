@@ -1,6 +1,6 @@
 # Hardware binaries
 vendor/bin/hw/android.hardware.bluetooth@1.1-service.unisoc
-vendor/bin/hw/android.hardware.gatekeeper@1.0-service.trusty
+#vendor/bin/hw/android.hardware.gatekeeper@1.0-service.trusty
 vendor/bin/hw/android.hardware.graphics.allocator@4.0-service
 vendor/bin/hw/android.hardware.keymaster@4.1-unisoc.service
 vendor/bin/hw/android.hardware.usb@1.1-service
@@ -348,7 +348,7 @@ vendor/lib/libTfliteWrapper.so
 vendor/lib/libtinycompress_util.so
 vendor/lib/libtqvalidate.so
 vendor/lib/libtracedump.so
-vendor/lib/libtrusty.so
+#vendor/lib/libtrusty.so
 vendor/lib/libufwriter.so
 vendor/lib/libumnn.so
 vendor/lib/libunisocpreprocessing.so
@@ -594,7 +594,7 @@ vendor/lib64/libteeproduction.so
 vendor/lib64/libtensorflowlite_c.so
 vendor/lib64/libTfliteWrapper.so
 vendor/lib64/libtqvalidate.so
-vendor/lib64/libtrusty.so
+#vendor/lib64/libtrusty.so
 vendor/lib64/libufwriter.so
 vendor/lib64/libumnn.so
 vendor/lib64/libunnengine.so
@@ -676,7 +676,7 @@ vendor/lib/modules/trace_noschedule_bytedancy.ko
 vendor/lib/modules/trace_runqlat_bytedancy.ko
 
 # Vintf fragments
--vendor/etc/vintf/manifest/android.hardware.gatekeeper@1.0-service.trusty.xml
+#-vendor/etc/vintf/manifest/android.hardware.gatekeeper@1.0-service.trusty.xml
 -vendor/etc/vintf/manifest/android.hardware.keymaster@4.1-unisoc.service.xml
 #-vendor/etc/vintf/manifest/vendor.sprd.hardware.boot@1.1.xml
 #-vendor/etc/vintf/manifest/vendor.sprd.hardware.gnss@2.1-service.xml
@@ -706,7 +706,7 @@ vendor/firmware/vdsp_firmware.bin
 
 # Init rcs
 vendor/etc/init/android.hardware.bluetooth@1.1-service.unisoc.rc
-vendor/etc/init/android.hardware.gatekeeper@1.0-service.trusty.rc
+#vendor/etc/init/android.hardware.gatekeeper@1.0-service.trusty.rc
 vendor/etc/init/android.hardware.graphics.allocator@4.0-service.img.rc
 vendor/etc/init/android.hardware.keymaster@4.1-unisoc.service.rc
 vendor/etc/init/android.hardware.usb@1.1-service.rc
