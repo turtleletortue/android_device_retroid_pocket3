@@ -764,7 +764,7 @@ vendor/etc/audio_params/sprd/dsp_vbc.xml
 vendor/etc/audio_config.xml
 vendor/etc/audio_effects.conf
 vendor/etc/audio_effects.xml
-vendor/etc/audio_pcm.xml
+#vendor/etc/audio_pcm.xml
 vendor/etc/audio_policy_engine_configuration.xml
 vendor/etc/audio_policy_engine_criteria.xml
 vendor/etc/audio_policy_engine_criterion_types.xml
